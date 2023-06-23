@@ -76,6 +76,8 @@ def bcrpscrapper(datos):
     """
     if isinstance(datos, str): #Comprobando si es una lista o no
       datos = [datos]
+    for x in range(len(datos)):
+      datos[x]=str(datos[x]+'/1990-1/2024-1/')
 
     df_vacio = pd.DataFrame()
     y = 1
