@@ -62,7 +62,7 @@ def scraperbcrp(direct):
   return df
   #return nombre, ultima_fila
 
-def bcrpscrapper(datos):
+def bcrpscrapper_p(datos):
     """
     Scrapea datos del BCRP de forma libre.
 
@@ -91,3 +91,34 @@ def bcrpscrapper(datos):
       print(tiempo)
 
     return df_vacio
+
+
+
+def bcrpscrapper(datos):
+    """
+    Scrapea datos del BCRP de forma libre.
+
+    Parámetros:
+        datos (str o list): Puede ser una lista "[]" o un string. Usa la o las URLS que te proporciona el BCRP
+
+    Return:
+        DataFrame con los
+
+    Ejemplos:
+    """
+    if isinstance(datos, str): #Comprobando si es una lista o no
+      datos = [datos]
+    for x in range(len(datos)):
+      datos[x]=str(datos[x]+'/1990-1/2024-1/')
+
+    df_vacio = pd.DataFrame()
+    y = 1
+    tiempo = 0
+    for x in datos:
+      data = scraperbcrp(x)
+      df_vacio = pd.concat([df_vacio, data])
+      contar = y/len(datos)
+      tiempo = tiempo + contar
+
+    return df_vacio
+
