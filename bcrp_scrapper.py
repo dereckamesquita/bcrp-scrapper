@@ -89,7 +89,3 @@ def bcrpscrapper(datos):
       print(tiempo)
 
     return df_vacio
-
-a = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38784BM/html')
-
-a
