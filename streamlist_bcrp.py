@@ -59,7 +59,7 @@ line = alt.Chart(df).mark_line().encode(
 labels = alt.Chart(df).mark_text(align='left', baseline='middle', dx=3).encode(
     x=alt.X('Periodo', sort='descending'),
     y=alt.Y('Interbancario - Compra', scale=alt.Scale(domain=[3, 4])),
-    text=alt.Text('Interbancario - Compra', format='.3f')
+    text=alt.Text('Interbancario - Compra', format='.3f'),
     color=alt.value('white')
 )
 
