@@ -24,7 +24,7 @@ data = {'Nombre': ['Juan', 'María', 'Carlos'],
 df = pd.DataFrame(data)
 
 # Mostrar el DataFrame en Streamlit
-df = bcrpscrapper(bcrp)
+df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01205PM/html')
 st.dataframe(df)
 
 with st.echo(code_location='below'):
