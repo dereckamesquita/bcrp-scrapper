@@ -36,5 +36,11 @@ df = df.apply(pd.to_numeric)
 df = df.T
 df = df[::-1]
 
-# Graficar el DataFrame en Streamlit
-st.line_chart(df, use_container_width=True)
+# Convertir el índice en una columna
+df['Periodo'] = df.index
+
+# Mostrar el DataFrame en Streamlit
+st.write(df)
+
+# Configurar el gráfico en Streamlit
+st.line_chart(df, x='Periodo', y='Interbancario - Compra', use_container_width=True)
