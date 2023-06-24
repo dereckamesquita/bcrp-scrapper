@@ -50,3 +50,19 @@ chart = alt.Chart(df).mark_line().encode(
 st.altair_chart(chart, use_container_width=True)
 
 
+###
+
+line = alt.Chart(df).mark_line().encode(
+    x=alt.X('Periodo', sort='descending'),
+    y=alt.Y('Interbancario - Compra', scale=alt.Scale(domain=[3, 4]))
+)
+
+labels = alt.Chart(df).mark_text(align='left', baseline='middle', dx=3).encode(
+    x=alt.X('Periodo', sort='descending'),
+    y=alt.Y('Interbancario - Compra', scale=alt.Scale(domain=[3, 4])),
+    text=alt.Text('Interbancario - Compra', format='.3f')
+)
+
+chart = line + labels
+st.altair_chart(chart, use_container_width=True)
+
