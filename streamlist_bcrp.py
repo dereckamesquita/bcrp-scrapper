@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 import requests
 
-from bcrp_scrapper import *
+from bcrp_scrapper import funcion1, funcion2
 
 """
 # Welcome to Streamlit!
