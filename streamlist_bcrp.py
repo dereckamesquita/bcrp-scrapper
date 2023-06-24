@@ -8,7 +8,7 @@ response = requests.get("https://raw.githubusercontent.com/dereckamesquita/bcrp-
 with open("bcrp_scrapper.py", "w") as file:
     file.write(response.text)
 from bcrp_scrapper import *
-
+import matplotlib
 """
 # Welcome to Streamlit!
 
