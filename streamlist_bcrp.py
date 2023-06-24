@@ -4,12 +4,9 @@ import math
 import pandas as pd
 import streamlit as st
 import requests
-url = "https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py"
-response = requests.get(url)
-
+response = requests.get("https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py")
 with open("bcrp_scrapper.py", "w") as file:
     file.write(response.text)
-
 from bcrp_scrapper import *
 
 """
@@ -32,23 +29,15 @@ df = pd.DataFrame(data)
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01205PM/html')
 st.dataframe(df)
 
-with st.echo(code_location='below'):
-    total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
-    num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
+st.write(df)
 
-    Point = namedtuple('Point', 'x y')
-    data = []
+# Crear el gráfico de línea
+fig, ax = plt.subplots()
+ax.plot(df['Periodo'], df['Precio'])
+ax.set_xlabel('Período')
+ax.set_ylabel('Precio (¢US$ por libras)')
+ax.set_title('Precio del cobre en diferentes períodos')
+ax.tick_params(axis='x', rotation=45)
 
-    points_per_turn = total_points / num_turns
-
-    for curr_point_num in range(total_points):
-        curr_turn, i = divmod(curr_point_num, points_per_turn)
-        angle = (curr_turn + 1) * 2 * math.pi * i / points_per_turn
-        radius = curr_point_num / total_points
-        x = radius * math.cos(angle)
-        y = radius * math.sin(angle)
-        data.append(Point(x, y))
-
-    st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
-        .mark_circle(color='#0068c9', opacity=0.5)
-        .encode(x='x:Q', y='y:Q'))
+# Mostrar el gráfico en Streamlit
+st.pyplot(fig)
