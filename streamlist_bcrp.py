@@ -43,7 +43,7 @@ st.write(df)
 chart = alt.Chart(df).mark_line().encode(
     x=alt.X('Periodo', sort='descending'),
     y=alt.Y('Interbancario - Compra', scale=alt.Scale(domain=[3, 4]))
-
+)
 
 
 # Mostrar el gráfico en Streamlit
