@@ -35,6 +35,4 @@ df = df.apply(pd.to_numeric)
 # Transponer el DataFrame para que los períodos sean las filas y los precios sean las columnas
 df = df.T
 df1 = df[::-1]
-df1.set_index('Interbancario - Compra', inplace=True) 
-# Configurar el gráfico de línea en Streamlit
-st.line_chart(df1, use_container_width=True)  # Graficar el DataFrame con el orden correcto en el eje X
+st.line_chart(df1, use_container_width=True)
