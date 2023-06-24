@@ -43,5 +43,11 @@ df['Periodo'] = df.index
 st.write(df)
 
 
-# Configurar el gráfico en Streamlit
-st.line_chart(df.set_index('Periodo'), use_container_width=True)
+# Configurar el gráfico utilizando Altair
+chart = alt.Chart(df).mark_line().encode(
+    x=alt.X('Periodo', sort=None),
+    y='Interbancario - Compra'
+)
+
+# Mostrar el gráfico en Streamlit
+st.altair_chart(chart, use_container_width=True)
