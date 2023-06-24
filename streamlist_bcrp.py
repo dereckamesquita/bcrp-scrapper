@@ -30,15 +30,12 @@ df = pd.DataFrame(data)
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01205PM/html')
 st.dataframe(df)
 
-st.write(df)
-
 # Crear el gráfico de línea
 fig, ax = plt.subplots()
-ax.plot(df['Periodo'], df['Precio'])
+ax.plot(df.columns[1:], df.iloc[0, 1:])
 ax.set_xlabel('Período')
-ax.set_ylabel('Precio (¢US$ por libras)')
-ax.set_title('Precio del cobre en diferentes períodos')
-ax.tick_params(axis='x', rotation=45)
+ax.set_ylabel('Precio')
+ax.set_title('Precio en diferentes períodos')
 
 # Mostrar el gráfico en Streamlit
 st.pyplot(fig)
