@@ -28,15 +28,12 @@ df = pd.DataFrame(data)
 
 # Mostrar el DataFrame en Streamlit
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01205PM/html')
-st.dataframe(df)
-numeric_columns = df.columns[1:]  # Excluir la columna 'Periodo'
-df[numeric_columns] = df[numeric_columns].apply(pd.to_numeric)
+
+# Convertir las columnas a tipo numérico
+df = df.apply(pd.to_numeric)
 
 # Mostrar el DataFrame en Streamlit
 st.write(df)
-
-# Eliminar la columna 'Periodo' del DataFrame
-df = df.drop(columns=['Periodo'])
 
 # Transponer el DataFrame para que los períodos sean las filas y los precios sean las columnas
 df = df.T
