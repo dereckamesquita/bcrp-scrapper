@@ -34,5 +34,14 @@ df = df.apply(pd.to_numeric)
 
 # Transponer el DataFrame para que los períodos sean las filas y los precios sean las columnas
 df = df.T
-df1 = df[::-1]
-st.line_chart(df1, use_container_width=True)
+df = df[::-1]
+df = df.set_index('Periodo')
+
+# Ordenar el DataFrame por el índice en orden ascendente
+df = df.sort_index()
+
+# Mostrar el DataFrame en Streamlit
+st.write(df)
+
+# Graficar el DataFrame en Streamlit
+st.line_chart(df, use_container_width=True)
