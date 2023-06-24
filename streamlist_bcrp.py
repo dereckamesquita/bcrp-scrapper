@@ -43,10 +43,8 @@ st.write(df)
 chart = alt.Chart(df).mark_line(color='red', strokeWidth=2).encode(
     x=alt.X('Periodo', sort='descending'),
     y=alt.Y('Interbancario - Compra', scale=alt.Scale(domain=[3, 4])),
-    text=alt.Text('Interbancario - Compra', format='.3f'),
-    color=alt.value('white')
-).mark_text(align='left', baseline='middle', dx=3)
-
+    text=alt.Text('Interbancario - Compra', format='.3f')
+).mark_text(align='left', baseline='middle', dx=3, color='white')
 
 # Mostrar el gráfico en Streamlit
 st.altair_chart(chart, use_container_width=True)
