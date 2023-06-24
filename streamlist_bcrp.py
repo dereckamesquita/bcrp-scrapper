@@ -40,7 +40,7 @@ st.write(df)
 
 
 # Configurar el gráfico utilizando Altair
-chart = alt.Chart(df).mark_line(color='green').encode(
+chart = alt.Chart(df).mark_line(color='red', strokeWidth=2).encode(
     x=alt.X('Periodo', sort='descending'),
     y=alt.Y('Interbancario - Compra', scale=alt.Scale(domain=[3, 4])),
     text=alt.Text('Interbancario - Compra', format='.3f'),
