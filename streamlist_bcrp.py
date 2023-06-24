@@ -40,18 +40,10 @@ st.write(df)
 
 
 # Configurar el gráfico utilizando Altair
-line = alt.Chart(df).mark_line(color='red', strokeWidth=2).encode(
+chart = alt.Chart(df).mark_line().encode(
     x=alt.X('Periodo', sort='descending'),
     y=alt.Y('Interbancario - Compra', scale=alt.Scale(domain=[3, 4]))
-)
 
-labels = alt.Chart(df).mark_text(align='left', baseline='middle', dx=3, color='white').encode(
-    x=alt.X('Periodo', sort='descending'),
-    y=alt.Y('Interbancario - Compra', scale=alt.Scale(domain=[3, 4])),
-    text=alt.Text('Interbancario - Compra', format='.3f')
-)
-
-chart = line + labels
 
 
 # Mostrar el gráfico en Streamlit
