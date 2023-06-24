@@ -69,3 +69,11 @@ chart = line + labels
 
 st.altair_chart(chart, use_container_width=True)
 
+# Configurar el gráfico utilizando Altair
+chart = alt.Chart(df).mark_line().encode(
+    x=alt.X('Periodo', sort='descending'),
+    y='Interbancario - Compra'
+)
+
+# Mostrar el gráfico en Streamlit
+st.altair_chart(chart, use_container_width=True)
