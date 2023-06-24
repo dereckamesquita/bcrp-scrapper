@@ -9,6 +9,8 @@ with open("bcrp_scrapper.py", "w") as file:
     file.write(response.text)
 from bcrp_scrapper import *
 import matplotlib
+matplotlib.use('Agg')
+
 """
 # Welcome to Streamlit!
 
