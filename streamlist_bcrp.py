@@ -20,11 +20,7 @@ forums](https://discuss.streamlit.io).
 
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
-data = {'Nombre': ['Juan', 'María', 'Carlos'],
-        'Edad': [25, 30, 35],
-        'Ciudad': ['Lima', 'Bogotá', 'Santiago']}
 
-df = pd.DataFrame(data)
 
 # Mostrar el DataFrame en Streamlit
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01205PM/html')
@@ -48,7 +44,7 @@ chart = alt.Chart(df).mark_line().encode(
     x=alt.X('Periodo', sort='descending'),
     y=alt.Y('Interbancario - Compra', scale=alt.Scale(domain=[3, 4])),
     text=alt.Text('Interbancario - Compra', format='.3f'),
-    color=alt.value('black')
+    color=alt.value('white')
 ).mark_text(align='left', baseline='middle', dx=3)
 
 
