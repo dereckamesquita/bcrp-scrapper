@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 import requests
 
-from bcrp_scrapper import funcion1, funcion2
+from bcrp_scrapper import bcrpscrapper
 
 """
 # Welcome to Streamlit!
@@ -17,7 +17,15 @@ forums](https://discuss.streamlit.io).
 
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
+data = {'Nombre': ['Juan', 'María', 'Carlos'],
+        'Edad': [25, 30, 35],
+        'Ciudad': ['Lima', 'Bogotá', 'Santiago']}
 
+df = pd.DataFrame(data)
+
+# Mostrar el DataFrame en Streamlit
+df = bcrpscrapper(bcrp)
+st.dataframe(df)
 
 with st.echo(code_location='below'):
     total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
