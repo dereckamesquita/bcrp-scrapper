@@ -34,6 +34,7 @@ df = df.apply(pd.to_numeric)
 
 # Transponer el DataFrame para que los períodos sean las filas y los precios sean las columnas
 df = df.T
+df1 = df[::-1]
 
 # Configurar el gráfico de línea en Streamlit
-st.line_chart(df, use_container_width=True)
+st.line_chart(df1, use_container_width=True)
