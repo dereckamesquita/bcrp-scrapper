@@ -38,11 +38,10 @@ df = df[::-1]
 
 # Convertir el índice en una columna
 df['Periodo'] = df.index
-df['Periodo'] = pd.to_datetime(df['Periodo'])
 
 # Mostrar el DataFrame en Streamlit
 st.write(df)
 
 
 # Configurar el gráfico en Streamlit
-st.line_chart(df, x='Periodo', y='Interbancario - Compra', use_container_width=True)
+st.line_chart(df.set_index('Periodo'), use_container_width=True)
