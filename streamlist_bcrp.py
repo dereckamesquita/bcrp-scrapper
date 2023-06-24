@@ -37,5 +37,4 @@ df = df.T
 df1 = df[::-1]
 
 # Configurar el gráfico de línea en Streamlit
-df.set_index('Periodo', inplace=True)  # Establecer la columna 'Periodo' como el índice
-st.line_chart(df, use_container_width=True)  # Graficar el DataFrame con el orden correcto en el eje X
+st.line_chart(df1, use_container_width=True)  # Graficar el DataFrame con el orden correcto en el eje X
