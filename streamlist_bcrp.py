@@ -29,13 +29,17 @@ df = pd.DataFrame(data)
 # Mostrar el DataFrame en Streamlit
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01205PM/html')
 st.dataframe(df)
+numeric_columns = df.columns[1:]  # Excluir la columna 'Periodo'
+df[numeric_columns] = df[numeric_columns].apply(pd.to_numeric)
 
-# Crear el gráfico de línea
-fig, ax = plt.subplots()
-ax.plot(df.columns[1:], df.iloc[0, 1:])
-ax.set_xlabel('Período')
-ax.set_ylabel('Precio')
-ax.set_title('Precio en diferentes períodos')
+# Mostrar el DataFrame en Streamlit
+st.write(df)
 
-# Mostrar el gráfico en Streamlit
-st.pyplot(fig)
+# Eliminar la columna 'Periodo' del DataFrame
+df = df.drop(columns=['Periodo'])
+
+# Transponer el DataFrame para que los períodos sean las filas y los precios sean las columnas
+df = df.T
+
+# Configurar el gráfico de línea en Streamlit
+st.line_chart(df, use_container_width=True)
