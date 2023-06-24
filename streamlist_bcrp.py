@@ -32,6 +32,9 @@ df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuale
 # Convertir las columnas a tipo numérico
 df = df.apply(pd.to_numeric)
 
+# Ordenar el DataFrame por el índice en orden ascendente
+df = df.sort_index()
+
 # Mostrar el DataFrame en Streamlit
 st.write(df)
 
@@ -40,3 +43,4 @@ df = df.T
 
 # Configurar el gráfico de línea en Streamlit
 st.line_chart(df, use_container_width=True)
+
