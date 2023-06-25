@@ -9,7 +9,13 @@ with open("bcrp_scrapper.py", "w") as file:
     file.write(response.text)
 from bcrp_scrapper import *
 import matplotlib.pyplot as plt
-
+import requests
+import pandas as pd
+from bs4 import BeautifulSoup
+import warnings
+warnings.filterwarnings("ignore")
+import urllib.request
+from datetime import datetime
 """
 # Welcome to Streamlit!
 
