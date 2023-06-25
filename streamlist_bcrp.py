@@ -1,9 +1,15 @@
-
+from collections import namedtuple
+import altair as alt
+import math
+import pandas as pd
+import streamlit as st
+import requests
 response = requests.get("https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py")
 with open("bcrp_scrapper.py", "w") as file:
     file.write(response.text)
 from bcrp_scrapper import *
-
+import matplotlib.pyplot as plt
+from datetime import datetime
 """
 # Welcome to Streamlit!
 
