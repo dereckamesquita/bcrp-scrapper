@@ -26,6 +26,16 @@ In the meantime, below is an example of what you can do with just a few lines of
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html')
 st.dataframe(df.T)
 
+df = df.T
+fig, ax = plt.subplots()
+df.plot(ax=ax)
+plt.xlabel('Periodo')
+plt.ylabel('IPC')
+plt.title('Gráfico de IPC')
+
+# Mostrar el gráfico en Streamlit
+st.pyplot(fig)
+
 # Convertir las columnas a tipo numérico
 df = df.apply(pd.to_numeric)
 
