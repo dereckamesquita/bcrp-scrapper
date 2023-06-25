@@ -23,7 +23,7 @@ In the meantime, below is an example of what you can do with just a few lines of
 
 
 # Mostrar el DataFrame en Streamlit
-df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01205PM/html')
+df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/diarias/resultados/PD04637PD/html')
 
 # Convertir las columnas a tipo numérico
 df = df.apply(pd.to_numeric)
@@ -36,7 +36,6 @@ df = df[::-1]
 df['Periodo'] = df.index
 
 # Mostrar el DataFrame en Streamlit
-st.write(df)
 
 
 # Configurar el gráfico utilizando Altair
