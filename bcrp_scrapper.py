@@ -19,54 +19,6 @@ import warnings
 warnings.filterwarnings("ignore")
 import urllib.request
 from datetime import datetime
-#Limpieza de fechas
-def convertir_fechas(df, columna):
-    def ajustar_anio(anio):
-        if anio <= 30:
-            anio += 2000
-        elif anio <= 100:
-            anio += 1900
-        return anio
-
-    def convertir_fecha(fecha):
-        diccionario_meses = {
-            'Ene': 1,
-            'Feb': 2,
-            'Mar': 3,
-            'Abr': 4,
-            'May': 5,
-            'Jun': 6,
-            'Jul': 7,
-            'Ago': 8,
-            'Sep': 9,
-            'Oct': 10,
-            'Nov': 11,
-            'Dic': 12
-        }
-        if len(fecha) == 7:
-            dia = int(fecha[:2])
-            mes = diccionario_meses.get(fecha[2:5], 1)
-            anio = int(fecha[5:])
-            anio = ajustar_anio(anio)
-        elif fecha[1] == 'T':
-            trimestre = int(fecha[0])
-            anio = int(fecha[2:])
-            anio = ajustar_anio(anio)
-            mes = trimestre * 3
-            dia = 30
-        elif len(fecha) == 5:  # Meses
-            mes = diccionario_meses.get(fecha[:3], 1)
-            anio = int(fecha[3:])
-            anio = ajustar_anio(anio)
-            dia = 1
-        else:  # Años
-            anio = int(fecha)
-            mes = 12
-            dia = 31
-        fecha_convertida = datetime(anio, mes, dia)
-        fecha_formateada = fecha_convertida.strftime("%Y-%m-%d")  # Formato: AAAA-MM-DD
-        return fecha_formateada
-
 
 def reemplazar_mes(x):
     diccionario_meses = {
@@ -183,8 +135,53 @@ def cortador(df, fechainicio, fechafinal):
     df_filtrado = df[df['Periodo'].between(fechainicio1, fechafinal1, inclusive=True)]
     return df_filtrado
 
+#Limpieza de fechas
+def convertir_fechas(df, columna):
+    def ajustar_anio(anio):
+        if anio <= 30:
+            anio += 2000
+        elif anio <= 100:
+            anio += 1900
+        return anio
+
+    def convertir_fecha(fecha):
+        diccionario_meses = {
+            'Ene': 1,
+            'Feb': 2,
+            'Mar': 3,
+            'Abr': 4,
+            'May': 5,
+            'Jun': 6,
+            'Jul': 7,
+            'Ago': 8,
+            'Sep': 9,
+            'Oct': 10,
+            'Nov': 11,
+            'Dic': 12
+        }
+        if len(fecha) == 7:
+            dia = int(fecha[:2])
+            mes = diccionario_meses.get(fecha[2:5], 1)
+            anio = int(fecha[5:])
+            anio = ajustar_anio(anio)
+        elif fecha[1] == 'T':
+            trimestre = int(fecha[0])
+            anio = int(fecha[2:])
+            anio = ajustar_anio(anio)
+            mes = trimestre * 3
+            dia = 30
+        elif len(fecha) == 5:  # Meses
+            mes = diccionario_meses.get(fecha[:3], 1)
+            anio = int(fecha[3:])
+            anio = ajustar_anio(anio)
+            dia = 1
+        else:  # Años
+            anio = int(fecha)
+            mes = 12
+            dia = 31
+        fecha_convertida = datetime(anio, mes, dia)
+        fecha_formateada = fecha_convertida.strftime("%Y-%m-%d")  # Formato: AAAA-MM-DD
+        return fecha_formateada
 
     df[columna] = df[columna].apply(convertir_fecha)
     return df
-
-
