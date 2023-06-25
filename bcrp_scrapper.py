@@ -68,17 +68,8 @@ def bcrpscrapper(datos, fecha_inicio='1900-01-01', fecha_final='2100-01-01'):
       df_vacio = pd.concat([df_vacio, data])
     return df_vacio
 
-def scraperbcrp(direct,fecha_inicio1,fecha_final2):
-  """
-  Esta función se encarga de entrar a una serie del BCRP.
-  Toma el dataframe y lo procesa en un pandas.
+def scraperbcrp(direct):
 
-  Parameters:
-    datos (str o list): Puede ser una lista "[]" o un string. Usa la o las URLS que te proporciona el BCRP
-  Return:
-    DataFrame
-  Ejemplos:
-  """
   # URL de la página web a scrapear
   user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
   url = direct
