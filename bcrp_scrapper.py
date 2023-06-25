@@ -112,7 +112,7 @@ def scraperbcrp(direct,fecha_inicio1,fecha_final2):
   nombre = soup.title.text
    # Convertimos la lista de datos en un DataFrame de Pandas
   df1 = pd.DataFrame(datos, columns=["Periodo", nombre])
-  df1 = convertir_fechas(df1, 'Periodo')
+  #df1 = convertir_fechas(df1, 'Periodo')
 
   #df1 = cortador(df1, fecha_inicio1, fecha_final2)
   #Trasponer dataframe
