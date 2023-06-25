@@ -23,7 +23,7 @@ In the meantime, below is an example of what you can do with just a few lines of
 
 
 # Mostrar el DataFrame en Streamlit
-df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM)
+df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html')
 st.dataframe(df.T)
 
 # Convertir las columnas a tipo numérico
