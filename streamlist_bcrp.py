@@ -71,7 +71,7 @@ def scraperbcrp(direct):
   return df1
 
 # Mostrar el DataFrame en Streamlit
-df = scraperbcrp('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html/2021-06/2023-06/')
+df = scraperbcrp('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html/1900-06/2023-06/')
 st.dataframe(df.T)
 
 # Convertir las columnas a tipo numérico
