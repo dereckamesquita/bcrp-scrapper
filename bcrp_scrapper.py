@@ -114,7 +114,7 @@ def scraperbcrp(direct,fecha_inicio1,fecha_final2):
   df1 = pd.DataFrame(datos, columns=["Periodo", nombre])
   df1 = convertir_fechas(df1, 'Periodo')
 
-  df1 = cortador(df1, fecha_inicio1, fecha_final2)
+  #df1 = cortador(df1, fecha_inicio1, fecha_final2)
   #Trasponer dataframe
   transposed_df = df1.transpose()
   transposed_df.columns = transposed_df.iloc[0]
@@ -125,7 +125,7 @@ def scraperbcrp(direct,fecha_inicio1,fecha_final2):
 # Eliminar columnas desde la primera hasta 'Feb95'
   #df = transposed_df.drop(transposed_df.columns[:index_to_drop], axis=1)
 
-  return transposed_df
+  return df1
   #return nombre, ultima_fila
 
 def cortador(df, fechainicio, fechafinal):
