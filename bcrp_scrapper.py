@@ -39,18 +39,7 @@ def reemplazar_mes(x):
     return diccionario_meses.get(x)
 
 def bcrpscrapper(datos, fecha_inicio='1900-01-01', fecha_final='2100-01-01'):
-    """
-    Scrapea datos del BCRP de forma libre. Esta función usa otra función principal, la cual se encarga de procesar cada+
-    serie.
 
-    Parameters:
-        datos (str o list): Puede ser una lista "[]" o un string. Usa la o las URLS que te proporciona el BCRP
-
-    Return:
-        DataFrame con los
-
-    Ejemplos:
-    """
     if isinstance(datos, str): #Comprobando si es una lista o no
       datos = [datos]
     for x in range(len(datos)):
