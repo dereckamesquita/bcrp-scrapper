@@ -4,4 +4,4 @@ streamlit
 matplotlib
 beautifulsoup4
 datetime
-urllib
+urllib.request
