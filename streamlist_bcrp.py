@@ -24,16 +24,4 @@ In the meantime, below is an example of what you can do with just a few lines of
 
 # Mostrar el DataFrame en Streamlit
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/diarias/resultados/PD04637PD/html','2020-03-01','2020-05-05')
-st.dataframe(df)
-
-# Convertir las columnas a tipo numérico
-df = df.apply(pd.to_numeric)
-
-# Transponer el DataFrame para que los períodos sean las filas y los precios sean las columnas
-df = df.T
-df = df[::-1]
-
-# Convertir el índice en una columna
-df['Periodo'] = df.index
-
-
+st.dataframe(df.T)
