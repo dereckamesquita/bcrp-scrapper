@@ -25,5 +25,17 @@ In the meantime, below is an example of what you can do with just a few lines of
 # Mostrar el DataFrame en Streamlit
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html').T
 st.dataframe(df)
+# Crear gráfico utilizando Matplotlib
+fig, ax = plt.subplots()
+df.plot(ax=ax)
+
+# Mostrar el gráfico en Streamlit
+st.pyplot(fig)
+
+
+
+
+
+
 
 
