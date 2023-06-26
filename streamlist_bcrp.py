@@ -26,11 +26,22 @@ In the meantime, below is an example of what you can do with just a few lines of
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html').T
 st.dataframe(df)
 # Crear gráfico utilizando Matplotlib
-fig, ax = plt.subplots()
-df.plot(ax=ax)
+import streamlit as st
+import pandas as pd
+import altair as alt
+
+# Crear DataFrame de ejemplo
+
+
+# Crear gráfico utilizando Altair
+chart = alt.Chart(df).mark_line().encode(
+    x='Periodo',
+    y='Valores'
+)
 
 # Mostrar el gráfico en Streamlit
-st.pyplot(fig)
+st.altair_chart(chart, use_container_width=True)
+
 
 
 
