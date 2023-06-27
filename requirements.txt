@@ -4,3 +4,4 @@ streamlit
 matplotlib
 beautifulsoup4
 datetime
+requests
