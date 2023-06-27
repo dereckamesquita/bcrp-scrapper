@@ -23,8 +23,14 @@ In the meantime, below is an example of what you can do with just a few lines of
 
 
 # Mostrar el DataFrame en Streamlit
-df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html').T
+df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/diarias/resultados/PD04637PD/html','2020-03-01','2020-05-05').T
 st.dataframe(df)
+df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html').T
+st.dataframe(df1)
+df2 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales/resultados/PM06103MA/html','2019-03-01','2023-05-05').T
+st.dataframe(df2)
+
+
 # Crear gráfico utilizando Matplotlib
 import streamlit as st
 import pandas as pd
