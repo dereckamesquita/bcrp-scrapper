@@ -25,8 +25,8 @@ In the meantime, below is an example of what you can do with just a few lines of
 # Mostrar el DataFrame en Streamlit
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/diarias/resultados/PD04637PD/html','2020-03-01','2020-05-05').T
 st.dataframe(df)
-df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html','2020-03-01','2020-05-05').T
-st.dataframe(df1)
+df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html','2020-03-01','2020-05-05').T
+st.dataframe(df)
 df2 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales/resultados/PM06103MA/html','2019-03-01','2023-05-05').T
 st.dataframe(df2)
 
@@ -38,18 +38,21 @@ import altair as alt
 
 # Crear DataFrame de ejemplo
 
-
-# Crea el gráfico utilizando Altair
+# Crear el gráfico de línea utilizando Altair
 chart = alt.Chart(df.reset_index()).mark_line().encode(
     x='index',
-    y='IPC'
+    y='columna1'
 )
 
-# Mostrar el gráfico en Streamlit
-st.altair_chart(chart, use_container_width=True)
+# Configurar las etiquetas de los ejes
+chart = chart.properties(
+    title='Gráfico de Línea',
+    xlabel='Periodo',
+    ylabel='Valores'
+)
 
+# Mostrar el gráfico utilizando Streamlit
 st.altair_chart(chart, use_container_width=True)
-
 
 
 
