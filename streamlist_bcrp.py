@@ -61,7 +61,7 @@ labels = alt.Chart(df1).mark_text(
     align='center',
     baseline='middle',
     dx=5,  # Desplazamiento horizontal de las etiquetas
-    dy=-5
+    dy=-5,
     color='white'# Desplazamiento vertical de las etiquetas
 ).encode(
     x=alt.X('Periodo:T'),
