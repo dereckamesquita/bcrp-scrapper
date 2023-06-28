@@ -40,12 +40,10 @@ import altair as alt
 
 
 # Crea el gráfico utilizando Altair
-chart = alt.Chart(df).mark_line().encode(
+chart = alt.Chart(df1).mark_line().encode(
     x='Periodo',
     y='Índice de Precios al Consumidor (IPC)'
-)
 
-# Muestra el gráfico en Streamlit
 st.altair_chart(chart, use_container_width=True)
 
 
