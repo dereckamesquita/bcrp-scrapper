@@ -36,7 +36,8 @@ import altair as alt
 import pandas as pd
 
 # Crear una nueva columna con el formato de fecha deseado
-df1['Periodo'] = pd.to_datetime(df1['Periodo'])
+
+df1['Periodo'] = df1.index
 df1['Periodo_Format'] = df1['Periodo'].dt.strftime('%b %Y')
 
 # Crear el gráfico utilizando Altair
