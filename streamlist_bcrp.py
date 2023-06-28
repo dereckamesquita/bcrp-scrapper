@@ -37,13 +37,18 @@ import pandas as pd
 
 # Crear una nueva columna con el formato de fecha deseado
 
+import streamlit as st
+import altair as alt
+import pandas as pd
+
+# Crear una nueva columna con el formato de fecha deseado
 df1['Periodo'] = df1.index
 df1['Periodo_Format'] = df1['Periodo'].dt.strftime('%b %Y')
 
 # Crear el gráfico utilizando Altair
 chart = alt.Chart(df1).mark_line().encode(
-    x='Periodo:T',
-    y='Índice de Precios al Consumidor (IPC):Q',
+    x=alt.X('Periodo:T', title='Periodo'),
+    y=alt.Y('Índice de Precios al Consumidor (IPC):Q', title='Índice de Precios al Consumidor (IPC)'),
     tooltip=['Periodo_Format', 'Índice de Precios al Consumidor (IPC)']
 ).properties(
     width=600,
@@ -51,8 +56,20 @@ chart = alt.Chart(df1).mark_line().encode(
     title='Variación del IPC'
 ).interactive()
 
-# Mostrar el gráfico utilizando Streamlit
-st.altair_chart(chart)
+# Añadir etiquetas a los puntos de datos
+labels = alt.Chart(df1).mark_text(
+    align='center',
+    baseline='middle',
+    dx=5,  # Desplazamiento horizontal de las etiquetas
+    dy=-5  # Desplazamiento vertical de las etiquetas
+).encode(
+    x=alt.X('Periodo:T'),
+    y=alt.Y('Índice de Precios al Consumidor (IPC):Q'),
+    text='Índice de Precios al Consumidor (IPC):Q'
+)
+
+# Mostrar el gráfico y las etiquetas utilizando Streamlit
+st.altair_chart(chart + labels)
 
 
 
