@@ -32,29 +32,6 @@ df2 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales
 st.dataframe(df2)
 
 
-# Crear gráfico utilizando Matplotlib
-import streamlit as st
-import pandas as pd
-import altair as alt
-
-# Crear DataFrame de ejemplo
-
-# Crear el gráfico de línea utilizando Altair
-chart = alt.Chart(df.reset_index()).mark_line().encode(
-    x='index',
-    y='columna1'
-)
-
-# Configurar las etiquetas de los ejes
-chart = chart.properties(
-    title='Gráfico de Línea',
-    xlabel='Periodo',
-    ylabel='Valores'
-)
-
-# Mostrar el gráfico utilizando Streamlit
-st.altair_chart(chart, use_container_width=True)
-
 
 
 
