@@ -132,10 +132,10 @@ def scraperbcrp(direct,fecha_inicio1,fecha_final2):
 def cortador(df, fechainicio, fechafinal):
     fechainicio1 = pd.to_datetime(fechainicio)
     fechafinal1 = pd.to_datetime(fechafinal)
-    df['Periodo'] = pd.to_datetime(df['Periodo'], format='%Y-%m-%d')
-    df_filtrado = df[df['Periodo'].between(fechainicio1, fechafinal1, inclusive=True)]
+    df['Periodo'] = pd.to_datetime(df['Periodo']).dt.strftime('%Y-%m-%d')
+    df['Periodo'] = pd.to_datetime(df['Periodo'])
+    df_filtrado = df[df['Periodo'].between(fechainicio1, fechafinal1, inclusive='both')]
     return df_filtrado
-
 
 #Limpieza de fechas
 def convertir_fechas(df, columna):
