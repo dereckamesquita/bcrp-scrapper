@@ -61,7 +61,8 @@ labels = alt.Chart(df1).mark_text(
     align='center',
     baseline='middle',
     dx=5,  # Desplazamiento horizontal de las etiquetas
-    dy=-5  # Desplazamiento vertical de las etiquetas
+    dy=-5
+    color='white'# Desplazamiento vertical de las etiquetas
 ).encode(
     x=alt.X('Periodo:T'),
     y=alt.Y('Índice de Precios al Consumidor (IPC):Q'),
