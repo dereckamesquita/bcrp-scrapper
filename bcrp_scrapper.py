@@ -130,11 +130,12 @@ def scraperbcrp(direct,fecha_inicio1,fecha_final2):
   #return nombre, ultima_fila
 
 def cortador(df, fechainicio, fechafinal):
-    fechainicio1 = datetime.strptime(fechainicio, "%Y-%m-%d")
-    fechafinal1 = datetime.strptime(fechafinal, "%Y-%m-%d")
+    fechainicio1 = pd.to_datetime(fechainicio)
+    fechafinal1 = pd.to_datetime(fechafinal)
     df['Periodo'] = pd.to_datetime(df['Periodo'], format='%Y-%m-%d')
     df_filtrado = df[df['Periodo'].between(fechainicio1, fechafinal1, inclusive=True)]
     return df_filtrado
+
 
 #Limpieza de fechas
 def convertir_fechas(df, columna):
