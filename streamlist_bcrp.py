@@ -28,7 +28,7 @@ st.write("¡Hola", pd.__version__)
 #st.dataframe(df)
 df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html','2018-03-01','2022-05-05').T
 st.dataframe(df1)
-df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales/resultados/PM06103MA/html','2019-03-01','2023-05-05').T
+df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales/resultados/PM06103MA/html','2000-03-01','2023-05-05').T
 df = df1.apply(pd.to_numeric, errors='coerce')
 
 st.dataframe(df)
@@ -80,7 +80,10 @@ ejey= df.columns[0]
 chart = alt.Chart(df.reset_index()).mark_line().encode(
     x=ejex,
     y=ejey
-)
-chart
+).properties(
+    width=600,
+    height=400,
+    title='Variación del IPC'
+).interactive()
 # Mostrar el gráfico utilizando Streamlit
 st.altair_chart(chart, use_container_width=True)
