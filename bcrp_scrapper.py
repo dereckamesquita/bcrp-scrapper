@@ -254,20 +254,22 @@ def gra_bcrp_labels(df):
         y=ejey
     )
     
-    # Agregar etiquetas personalizadas con estilo de color blanco
+    # Agregar etiquetas personalizadas en color blanco
     labels = chart.mark_text(
         align='left',
         baseline='middle',
         dx=3,
-        style={'fill': 'white'}  # Establecer el color de las etiquetas en blanco
+        color='black'  # Cambiar el color de las etiquetas a blanco
     ).encode(
         x=ejex,
         y=ejey,
-        text=alt.Text(ejey, format='.2f')  # Etiquetas con formato de dos decimales
+        text=alt.Text(ejey, format='.2f'),  # Etiquetas con formato de dos decimales
+        color=alt.value('white')  # Especificar el color blanco de las etiquetas
     )
     
     # Combinar gráfico y etiquetas
     chart_with_labels = chart + labels
     
     return chart_with_labels
+
 
