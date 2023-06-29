@@ -75,7 +75,7 @@ st.altair_chart(chart + labels)
 
 # Crear el gráfico utilizando Altair
 chart = alt.Chart(df1).mark_line().encode(
-    x=alt.X('Periodo:T', title='Periodo'),
+    x=alt.X('index:T', title='Periodo'),
     y=alt.Y('Reservas Internacionales Netas (millones US$):Q', title='Reservas Internacionales Netas (millones US$)'),
     tooltip=['Periodo', 'Reservas Internacionales Netas (millones US$)']
 ).properties(
