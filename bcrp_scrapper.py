@@ -189,3 +189,11 @@ def convertir_fechas(df, columna):
 
     df[columna] = df[columna].apply(convertir_fecha)
     return df
+
+def gra_bcrp(df):
+  ejex= df.index.name
+  ejey= df.columns[0]
+  chart = alt.Chart(df.reset_index()).mark_line().encode(
+    x=ejex,
+    y=ejey)
+  return chart
