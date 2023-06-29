@@ -233,3 +233,10 @@ def motorscrapeobasico(direct):
     # Convertir la lista de datos en un DataFrame de Pandas
     df = pd.DataFrame(datos, columns=["Periodo", nombre])
     return df
+def gra_bcrp(df):
+  ejex= df.index.name
+  ejey= df.columns[0]
+  chart = alt.Chart(df.reset_index()).mark_line().encode(
+    x=ejex,
+    y=ejey)
+  return chart
