@@ -261,6 +261,7 @@ def gra_bcrp_labels(df):
         x=ejex,
         y=ejey,
         text=alt.Text(ejey, format='.2f')  # Etiquetas con formato de dos decimales
+        color=alt.value('white')  # Especificar el color blanco de las etiquetas
     )
     
     # Combinar gráfico y etiquetas
