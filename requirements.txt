@@ -2,6 +2,6 @@ altair
 pandas
 streamlit
 matplotlib
-beautifulsoup4
+bs4
 datetime
 requests
