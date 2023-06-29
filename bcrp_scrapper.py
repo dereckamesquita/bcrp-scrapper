@@ -242,3 +242,29 @@ def gra_bcrp(df):
     width=600,
     height=400).interactive()
   return chart
+
+def gra_bcrp_labels(df):
+    ejex = df.index.name
+    ejey = df.columns[0]
+    
+    chart = alt.Chart(df.reset_index()).mark_line().encode(
+        x=ejex,
+        y=ejey
+    )
+    
+    # Agregar etiquetas personalizadas
+    labels = chart.mark_text(
+        align='left',
+        baseline='middle',
+        dx=3,
+        color='black'
+    ).encode(
+        x=ejex,
+        y=ejey,
+        text=alt.Text(ejey, format='.2f')  # Etiquetas con formato de dos decimales
+    )
+    
+    # Combinar gráfico y etiquetas
+    chart_with_labels = chart + labels
+    
+    return chart_with_labels
