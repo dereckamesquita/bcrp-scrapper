@@ -257,7 +257,7 @@ def gra_bcrp_labels(df):
         align='left',
         baseline='middle',
         dx=3,
-        color='black'
+        color='white'
     ).encode(
         x=ejex,
         y=ejey,
