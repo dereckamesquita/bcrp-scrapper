@@ -25,3 +25,12 @@ In the meantime, below is an example of what you can do with just a few lines of
 st.write("¡Hola", pd.__version__, ' ', bs4.__version__)
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/diarias/resultados/PD04637PD/html','2005-03-01','2023-05-05').T
 st.dataframe(df)
+
+def gra_bcrp(df):
+  ejex= df.index.name
+  ejey= df.columns[0]
+  chart = alt.Chart(df.reset_index()).mark_line().encode(
+    x=ejex,
+    y=ejey)
+  return chart
+
