@@ -251,7 +251,6 @@ def gra_bcrp_labels(df):
         x=ejex,
         y=ejey
     )
-    
     # Agregar etiquetas personalizadas
     labels = chart.mark_text(
         align='left',
