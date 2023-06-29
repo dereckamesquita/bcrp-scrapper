@@ -40,7 +40,7 @@ df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/diarias/
                   '2023-08-05').T
 st.dataframe(df.tail(5)
 
-st.altair_chart(gra_bcrp(df, use_container_width=True)
+st.altair_chart(gra_bcrp(df), use_container_width=True)
 st.code(codediario, language='python')
 st.subheader('Serie Mensual: Evolución del IPC')
 
