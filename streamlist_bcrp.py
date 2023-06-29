@@ -49,7 +49,7 @@ df1['Periodo_Format'] = df1['Periodo'].dt.strftime('%b %Y')
 chart = alt.Chart(df1).mark_line().encode(
     x=alt.X('Periodo:T', title='Periodo'),
     y=alt.Y('Índice de Precios al Consumidor (IPC):Q', title='Índice de Precios al Consumidor (IPC)'),
-    tooltip=['Periodo_Format', df1.columns[0]
+    tooltip=['Periodo_Format', df1.columns[0]]
 ).properties(
     width=600,
     height=400,
