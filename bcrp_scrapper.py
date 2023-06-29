@@ -243,6 +243,8 @@ def gra_bcrp(df):
     height=400).interactive()
   return chart
 
+
+
 def gra_bcrp_labels(df):
     ejex = df.index.name
     ejey = df.columns[0]
@@ -251,20 +253,21 @@ def gra_bcrp_labels(df):
         x=ejex,
         y=ejey
     )
-    # Agregar etiquetas personalizadas
+    
+    # Agregar etiquetas personalizadas con estilo de color blanco
     labels = chart.mark_text(
         align='left',
         baseline='middle',
         dx=3,
-        color='white'
+        style={'fill': 'white'}  # Establecer el color de las etiquetas en blanco
     ).encode(
         x=ejex,
         y=ejey,
         text=alt.Text(ejey, format='.2f')  # Etiquetas con formato de dos decimales
-        color=alt.value('white')  # Especificar el color blanco de las etiquetas
     )
     
     # Combinar gráfico y etiquetas
     chart_with_labels = chart + labels
     
     return chart_with_labels
+
