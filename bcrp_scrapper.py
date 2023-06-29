@@ -238,5 +238,7 @@ def gra_bcrp(df):
   ejey= df.columns[0]
   chart = alt.Chart(df.reset_index()).mark_line().encode(
     x=ejex,
-    y=ejey)
+    y=ejey).properties(
+    width=600,
+    height=400).interactive()
   return chart
