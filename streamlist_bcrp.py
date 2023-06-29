@@ -38,9 +38,9 @@ st.subheader('Serie diaria: Tipo de cambio')
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/diarias/resultados/PD04637PD/html',
                   '2010-03-01',
                   '2023-08-05').T
-st.dataframe(df)
+st.dataframe(df.tail(5)
 
-st.altair_chart(gra_bcrp(df.tail(5), use_container_width=True)
+st.altair_chart(gra_bcrp(df, use_container_width=True)
 st.code(codediario, language='python')
 st.subheader('Serie Mensual: Evolución del IPC')
 
