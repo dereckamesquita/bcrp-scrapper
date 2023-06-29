@@ -31,7 +31,8 @@ def gra_bcrp(df):
   ejey= df.columns[0]
   chart = alt.Chart(df.reset_index()).mark_line().encode(
     x=ejex,
-    y=ejey)
+    y=ejey).interactive()
+
   return chart
 
 st.altair_chart(gra_bcrp(df), use_container_width=True)
