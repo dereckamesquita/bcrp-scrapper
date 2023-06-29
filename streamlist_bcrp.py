@@ -73,7 +73,14 @@ labels = alt.Chart(df1).mark_text(
 st.altair_chart(chart + labels)
 
 
+# Crear el gráfico utilizando Altair
+chart = alt.Chart(df1).mark_line().encode(
+    x='Periodo',
+    y='Reservas Internacionales Netas (millones US$)'
+)
 
+# Mostrar el gráfico en Streamlit
+st.altair_chart(chart, use_container_width=True)
 
 
 
