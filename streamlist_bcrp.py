@@ -10,6 +10,7 @@ with open("bcrp_scrapper.py", "w") as file:
 from bcrp_scrapper import *
 import matplotlib.pyplot as plt
 from datetime import datetime
+import bs4
 """
 # Welcome to Streamlit!
 
