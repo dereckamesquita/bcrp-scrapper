@@ -67,8 +67,8 @@ def bcrpscrapper(datos, fecha_inicio='1900-01-01', fecha_final='2100-01-01'):
     for x in datos:
       data = scraperbcrp(x,fecha_inicio,fecha_final)
       df_vacio = pd.concat([df_vacio, data])
-      df_vacio=df_vacio.apply(pd.to_numeric, errors='coerce')
-  
+    df_vacio=df_vacio.apply(pd.to_numeric, errors='coerce')
+
     return df_vacio
 
 def scraperbcrp(direct,fecha_inicio1,fecha_final2):
