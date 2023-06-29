@@ -9,8 +9,6 @@ Original file is located at
 # BCRP Scrapper
 """
 
-#!wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
-#from bcrp_scrapper import *
 
 import requests
 import pandas as pd
@@ -20,7 +18,13 @@ warnings.filterwarnings("ignore")
 import urllib.request
 import re
 from datetime import datetime
-import altair as alt
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
+import requests
+import xml.etree.ElementTree as ET
+import pandas as pd
+
 def reemplazar_mes(x):
     diccionario_meses = {
         'Ene': 1,
@@ -71,65 +75,40 @@ def bcrpscrapper(datos, fecha_inicio='1900-01-01', fecha_final='2100-01-01'):
 
     return df_vacio
 
-def scraperbcrp(direct,fecha_inicio1,fecha_final2):
-  """
-  Esta función se encarga de entrar a una serie del BCRP.
-  Toma el dataframe y lo procesa en un pandas.
+import urllib.request
+from bs4 import BeautifulSoup
+import pandas as pd
 
-  Parameters:
-    datos (str o list): Puede ser una lista "[]" o un string. Usa la o las URLS que te proporciona el BCRP
-  Return:
-    DataFrame
-  Ejemplos:
-  """
-  # URL de la página web a scrapear
-  user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
-  url = direct
-  headers={'User-Agent':user_agent,}
-  request=urllib.request.Request(url,None,headers) #The assembled request
-  try:
-    response = urllib.request.urlopen(request)
-  except:
-    print('error',direct)
-  data = response.read() # The data u need
-  soup =  BeautifulSoup(data)
-  # Obtenemos la tabla que contiene los datos
-  tabla = soup.find("table", class_ = "series")
+def scraperbcrp(direct, fecha_inicio1, fecha_final2):
+    """
+    Esta función se encarga de entrar a una serie del BCRP.
+    Toma el dataframe y lo procesa en un pandas.
 
-  # Obtenemos todas las filas de la tabla, excepto la primera que corresponde a los encabezados
-  filas = tabla.find_all("tr")[1:]
+    Parameters:
+        direct (str): URL de la serie del BCRP
+        fecha_inicio1 (str): Fecha de inicio en formato "YYYY-MM-DD"
+        fecha_final2 (str): Fecha final en formato "YYYY-MM-DD"
 
-  # Creamos una lista vacía para almacenar los datos
-  datos = []
+    Returns:
+        pd.DataFrame: DataFrame con los datos de la serie
 
-  # Recorremos las filas y obtenemos los datos de cada columna
-  for fila in filas:
-      celdas = fila.find_all("td")
-      periodo = celdas[0].text.strip()
-      valor = celdas[1].text.strip()
-      datos.append((periodo, valor))
+    Ejemplos:
+    """
+    ####### MOTOR DE CREACIÓN (inicio) ######
+    # URL de la página web a scrapear
+    df1 = motorscraper(direct)
+        ####### MOTOR DE CREACIÓN (Final) ######
 
+    df2 = convertir_fechas(df1, 'Periodo')
 
-  #ultima_fila = df1.iloc[-1]
-  # Obtener nombre de la serie
-  nombre = soup.title.text
-   # Convertimos la lista de datos en un DataFrame de Pandas
-  df1 = pd.DataFrame(datos, columns=["Periodo", nombre])
-  df1 = convertir_fechas(df1, 'Periodo')
+    df2 = cortador(df2, fecha_inicio1, fecha_final2)
 
-  df1 = cortador(df1, fecha_inicio1, fecha_final2)
-  #Trasponer dataframe
-  transposed_df = df1.transpose()
-  transposed_df.columns = transposed_df.iloc[0]
-  transposed_df = transposed_df[1:]
-  #Cortar elementos
-  #index_to_drop = transposed_df.columns.get_loc('Ago22')
+    # Transponer dataframe
+    transposed_df = df2.transpose()
+    transposed_df.columns = transposed_df.iloc[0]
+    final = transposed_df[1:]
 
-# Eliminar columnas desde la primera hasta 'Feb95'
-  #df = transposed_df.drop(transposed_df.columns[:index_to_drop], axis=1)
-
-  return transposed_df
-  #return nombre, ultima_fila
+    return final
 
 def cortador(df, fechainicio, fechafinal):
     fechainicio1 = pd.to_datetime(fechainicio)
@@ -190,10 +169,67 @@ def convertir_fechas(df, columna):
     df[columna] = df[columna].apply(convertir_fecha)
     return df
 
-def gra_bcrp(df):
-  ejex= df.index.name
-  ejey= df.columns[0]
-  chart = alt.Chart(df.reset_index()).mark_line().encode(
-    x=ejex,
-    y=ejey)
-  return chart
+def motorscraper(url):
+  codigo = url.split('/')[7]
+  uno = url.split('/')[9]
+  dos = url.split('/')[10]
+  url_archivo = 'https://estadisticas.bcrp.gob.pe/estadisticas/series/api/'+codigo+'/xml/'+uno+'/'+dos+'/'
+  # Realizar la solicitud GET a la URL y obtener el contenido XML
+  response = requests.get(url_archivo)
+  contenido_xml = response.content
+  # Analizar el contenido XML
+  root = ET.fromstring(contenido_xml)
+
+# Crear listas para almacenar los datos de fecha y valor
+  fechas = []
+  valores = []
+
+# Recorrer los elementos 'period' en el XML y extraer la fecha y el valor
+  for period in root.iter('period'):
+    fecha = period.attrib['name']
+    valor = period.find('v').text
+    fecha = ''.join(fecha.split('.'))
+    fechas.append(fecha)
+    valores.append(valor)
+  config = root.find('config')
+  title = config.attrib['title']
+  # Crear un DataFrame de pandas con los datos
+  df = pd.DataFrame({'Periodo': fechas, title: valores})
+  df['Periodo'] = df['Periodo'].astype(str)
+  return df
+
+def motorscrapeobasico(direct):
+    user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
+    url = direct
+    headers = {'User-Agent': user_agent}
+    request = urllib.request.Request(url, None, headers)  # The assembled request
+    try:
+        response = urllib.request.urlopen(request)
+    except:
+        print('error', direct)
+
+    data = response.read()  # The data you need
+    soup = BeautifulSoup(data)
+
+    # Obtenemos la tabla que contiene los datos
+    tabla = soup.find("table", class_="series")
+
+    # Obtenemos todas las filas de la tabla, excepto la primera que corresponde a los encabezados
+    filas = tabla.find_all("tr")[1:]
+
+    # Creamos una lista vacía para almacenar los datos
+    datos = []
+
+    # Recorremos las filas y obtenemos los datos de cada columna
+    for fila in filas:
+        celdas = fila.find_all("td")
+        periodo = celdas[0].text.strip()
+        valor = celdas[1].text.strip()
+        datos.append((periodo, valor))
+
+    # Obtener nombre de la serie
+    nombre = soup.title.text
+
+    # Convertir la lista de datos en un DataFrame de Pandas
+    df = pd.DataFrame(datos, columns=["Periodo", nombre])
+    return df
