@@ -19,7 +19,7 @@ import urllib.request
 import re
 from datetime import datetime
 import ssl
-
+import altair as alt
 ssl._create_default_https_context = ssl._create_unverified_context
 import requests
 import xml.etree.ElementTree as ET
