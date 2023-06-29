@@ -34,5 +34,5 @@ def gra_bcrp(df):
     y=ejey)
   return chart
 
-gra_brp(df)
+gra_brpc(df)
 
