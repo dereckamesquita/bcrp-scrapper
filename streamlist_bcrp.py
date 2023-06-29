@@ -55,11 +55,5 @@ st.subheader('Serie Anual: Reservas internacionales')
 ### Serie anual
 df2 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales/resultados/PM06103MA/html','2000-03-01','2023-05-05').T
 st.dataframe(df2)
-labels = alt.Chart(df2).mark_text(
-    align='center',
-    baseline='middle',
-    dx=5,  # Desplazamiento horizontal de las etiquetas
-    dy=-5,
-    color='white')# Desplazamiento vertical de las etiquetas
-st.altair_chart(gra_bcrp(df2)+labels, use_container_width=True)
+st.altair_chart(gra_bcrp_labels(df2), use_container_width=True)
 st.code(codeanual, language='python')
