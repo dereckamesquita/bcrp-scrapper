@@ -74,7 +74,7 @@ labels = alt.Chart(df1).mark_text(
 # Mostrar el gráfico y las etiquetas utilizando Streamlit
 st.altair_chart(chart + labels)
 
-chart = alt.Chart(df.reset_index()).mark_line().encode(
+chart = alt.Chart(df1.reset_index()).mark_line().encode(
     x='Periodo:T',
     y='Reservas Internacionales Netas (millones US$):Q'
 ).properties(
