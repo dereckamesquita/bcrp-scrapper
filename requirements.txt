@@ -2,6 +2,6 @@ altair
 pandas
 streamlit
 matplotlib
-bs4
+bs4 == 4.11.2
 datetime
 requests
