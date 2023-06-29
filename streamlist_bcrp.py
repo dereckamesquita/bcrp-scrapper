@@ -29,6 +29,8 @@ st.write("¡Hola", pd.__version__)
 df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html','2018-03-01','2022-05-05').T
 st.dataframe(df1)
 df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales/resultados/PM06103MA/html','2019-03-01','2023-05-05').T
+df1 = df1.applymap('{:,}'.format)
+
 st.dataframe(df1)
 
 import streamlit as st
