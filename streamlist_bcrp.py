@@ -34,5 +34,5 @@ def gra_bcrp(df):
     y=ejey)
   return chart
 
-gra_bcrp(df)
+st.altair_chart(gra_bcrp(df), use_container_width=True)
 
