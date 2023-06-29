@@ -20,7 +20,7 @@ warnings.filterwarnings("ignore")
 import urllib.request
 import re
 from datetime import datetime
-
+import altair as alt
 def reemplazar_mes(x):
     diccionario_meses = {
         'Ene': 1,
