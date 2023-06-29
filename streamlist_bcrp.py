@@ -75,9 +75,17 @@ st.altair_chart(chart + labels)
 
 # Crear el gráfico utilizando Altair
 chart = alt.Chart(df1).mark_line().encode(
-    x='Periodo',
-    y='Reservas Internacionales Netas (millones US$)'
-)
+    x=alt.X('Periodo:T', title='Periodo'),
+    y=alt.Y('Datos:Q', title='Datos'),
+    tooltip=['Periodo', 'Datos']
+).properties(
+    width=600,
+    height=400,
+    title='Gráfico de Ejemplo'
+).interactive()
+
+# Mostrar el gráfico en Streamlit
+st.altair_chart(chart, use_container_width=True)
 
 # Mostrar el gráfico en Streamlit
 st.altair_chart(chart, use_container_width=True)
