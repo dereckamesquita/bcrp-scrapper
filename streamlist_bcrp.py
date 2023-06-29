@@ -23,6 +23,11 @@ df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensual
 st.dataframe(df1)
 st.altair_chart(gra_bcrp(df1), use_container_width=True)
 '''
+codeanual= '''
+df2 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales/resultados/PM06103MA/html','2000-03-01','2023-05-05').T
+st.dataframe(df2)
+st.altair_chart(gra_bcrp(df2), use_container_width=True)
+'''
 
 st.title('Presentación de bcrpscrapper: Descarga fácil de datos del BCRP')
 st.write('¡Bienvenido a mi aplicación de Streamlit!')
@@ -37,9 +42,24 @@ st.dataframe(df)
 
 st.altair_chart(gra_bcrp(df), use_container_width=True)
 st.code(codediario, language='python')
+st.subheader('Serie Mensual: Evolución del IPC')
 
 ### Serie mensual
 df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html').T
 st.dataframe(df1)
 st.altair_chart(gra_bcrp(df1), use_container_width=True)
-st.code(codediario, language='python')
+st.code(codemensual, language='python')
+
+st.subheader('Serie Anual: Reservas internacionales')
+
+### Serie anual
+df2 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales/resultados/PM06103MA/html','2000-03-01','2023-05-05').T
+st.dataframe(df2)
+labels = alt.Chart(df2).mark_text(
+    align='center',
+    baseline='middle',
+    dx=5,  # Desplazamiento horizontal de las etiquetas
+    dy=-5,
+    color='white'# Desplazamiento vertical de las etiquetas
+st.altair_chart(gra_bcrp(df2)+labels, use_container_width=True)
+st.code(codeanual, language='python')
