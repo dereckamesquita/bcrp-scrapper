@@ -21,6 +21,6 @@ forums](https://discuss.streamlit.io).
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
 
-st.write("¡Hola", pd.__version__)
+st.write("¡Hola", pd.__version__, ' ', bs4.__version__)
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/diarias/resultados/PD04637PD/html','2005-03-01','2023-05-05').T
 st.dataframe(df)
