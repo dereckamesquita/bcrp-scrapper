@@ -12,12 +12,17 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import bs4
 codediario = '''
+!wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
+from bcrp_scrapper import *
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/diarias/resultados/PD04637PD/html','2010-03-01','2023-08-05').T
 st.dataframe(df)
-
 st.altair_chart(gra_bcrp(df), use_container_width=True)
 '''
-
+codemensual = '''
+df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html').T
+st.dataframe(df1)
+st.altair_chart(gra_bcrp(df1), use_container_width=True)
+'''
 
 st.title('Presentación de bcrpscrapper: Descarga fácil de datos del BCRP')
 st.write('¡Bienvenido a mi aplicación de Streamlit!')
@@ -33,3 +38,8 @@ st.dataframe(df)
 st.altair_chart(gra_bcrp(df), use_container_width=True)
 st.code(codediario, language='python')
 
+### Serie mensual
+df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html').T
+st.dataframe(df1)
+st.altair_chart(gra_bcrp(df1), use_container_width=True)
+st.code(codediario, language='python')
