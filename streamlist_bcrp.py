@@ -29,9 +29,9 @@ st.write("¡Hola", pd.__version__)
 df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html','2018-03-01','2022-05-05').T
 st.dataframe(df1)
 df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales/resultados/PM06103MA/html','2019-03-01','2023-05-05').T
-df1 = df1.apply(pd.to_numeric, errors='coerce')
+df = df1.apply(pd.to_numeric, errors='coerce')
 
-st.dataframe(df1)
+st.dataframe(df)
 
 import streamlit as st
 import altair as alt
@@ -74,14 +74,13 @@ labels = alt.Chart(df1).mark_text(
 # Mostrar el gráfico y las etiquetas utilizando Streamlit
 st.altair_chart(chart + labels)
 
-chart = alt.Chart(df1.reset_index()).mark_line().encode(
-    x='Periodo:T',
-    y='Reservas Internacionales Netas (millones US$):Q'
-).properties(
-    width=600,
-    height=400,
-    title='Reservas Internacionales Netas'
-)
+ejex= df.index.name
+ejey= df.columns[0]
 
+chart = alt.Chart(df.reset_index()).mark_line().encode(
+    x=ejex,
+    y=ejey
+)
+chart
 # Mostrar el gráfico utilizando Streamlit
 st.altair_chart(chart, use_container_width=True)
