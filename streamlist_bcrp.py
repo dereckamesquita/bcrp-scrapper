@@ -54,21 +54,20 @@ st.subheader('Serie diaria: Tipo de cambio')
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/diarias/resultados/PD04637PD/html',
                   '2010-03-01',
                   '2024-08-05').T
+st.code(codediario, language='python')
 st.altair_chart(gra_bcrp(df), use_container_width=True)
 st.dataframe(df.tail(5))
-st.code(codediario, language='python')
 st.subheader('Serie Mensual: Evolución del IPC')
 
 ### Serie mensual
 df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html').T
+st.code(codemensual, language='python')
 st.altair_chart(gra_bcrp(df1), use_container_width=True)
 st.dataframe(df1.tail(6))
-st.code(codemensual, language='python')
-
 st.subheader('Serie Anual: Reservas internacionales')
 
 ### Serie anual
 df2 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales/resultados/PM06103MA/html','2000-03-01','2023-05-05').T
+st.code(codeanual, language='python')
 st.altair_chart(gra_bcrp(df2), use_container_width=True)
 st.dataframe(df2.tail(6))
-st.code(codeanual, language='python')
