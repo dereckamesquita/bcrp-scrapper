@@ -40,6 +40,8 @@ st.write('En esta aplicación, te presentaré mi librería bcrpscrapper, que te 
 st.subheader('Absolutamente todas las series 📊')
 st.write('No tienes que descargar nada, ni cuadernos colab, ni raros archivos. Simplemente necesitaras ejecutar un comando simple.')
 st.code(code, language='python')
+st.write('Eso es todo, podrás acceder a cualquier serie del Banco Central para que puedas trabajarla. Adicionalmente te presento una forma de realizar gráficos rapidamente.')
+
 
 st.subheader('Serie diaria: Tipo de cambio')
 
