@@ -33,14 +33,13 @@ st.title('✅ Presentación de bcrpscrapper: Descarga fácil de datos del BCRP')
 st.write('Hola, soy Dereck Amesquita')
 st.markdown('[LinkedIn](https://www.linkedin.com/in/dereck-amesquita/)')
 st.write('En esta aplicación, te presentaré mi librería bcrpscrapper, que te permite descargar datos del Banco Central de Reserva del Perú (BCRP) de forma sencilla y conveniente.')
-st.write('A continuación, puedes ver un ejemplo de cómo utilizar la librería para descargar datos y mostrarlos en un DataFrame:')
+st.subheader('Absolutamente todas las series')
 st.subheader('Serie diaria: Tipo de cambio')
 
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/diarias/resultados/PD04637PD/html',
                   '2010-03-01',
                   '2024-08-05').T
-st.dataframe(df.tail(5))
-
+st.dataframe(df.tail(5).style.set_properties(**{'text-align': 'center'}), height=200)
 st.altair_chart(gra_bcrp(df), use_container_width=True)
 st.code(codediario, language='python')
 st.subheader('Serie Mensual: Evolución del IPC')
