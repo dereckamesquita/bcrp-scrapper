@@ -11,7 +11,7 @@ from bcrp_scrapper import *
 import matplotlib.pyplot as plt
 from datetime import datetime
 import bs4
-codediario = '''
+code = '''
 !wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
 from bcrp_scrapper import *
 '''
