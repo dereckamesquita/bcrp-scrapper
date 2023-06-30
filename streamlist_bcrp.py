@@ -20,17 +20,21 @@ codediario = '''
 from bcrp_scrapper import *
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/diarias/resultados/PD04637PD/html','2010-03-01','2023-08-05').T
 st.dataframe(df)
-st.altair_chart(gra_bcrp(df), use_container_width=True)
+gra_bcrp(df)
 '''
 codemensual = '''
+!wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
+from bcrp_scrapper import *
 df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html').T
 st.dataframe(df1)
-st.altair_chart(gra_bcrp(df1), use_container_width=True)
+gra_bcrp(df1)
 '''
 codeanual= '''
+!wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
+from bcrp_scrapper import *
 df2 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales/resultados/PM06103MA/html','2000-03-01','2023-05-05').T
 st.dataframe(df2)
-st.altair_chart(gra_bcrp(df2), use_container_width=True)
+gra_bcrp(df2)
 '''
 
 st.title('✅ Presentación de bcrpscrapper: Descarga fácil de datos del BCRP')
@@ -38,9 +42,11 @@ st.write('Hola, soy Dereck Amesquita')
 st.markdown('[LinkedIn](https://www.linkedin.com/in/dereck-amesquita/)')
 st.write('En esta aplicación, te presentaré mi librería bcrpscrapper, que te permite descargar datos del Banco Central de Reserva del Perú (BCRP) de forma sencilla y conveniente.')
 st.subheader('Absolutamente todas las series 📊')
-st.write('No tienes que descargar nada, ni cuadernos colab, ni raros archivos. Simplemente necesitaras ejecutar un comando simple.')
+st.write('⭐️ No tienes que descargar nada, ni cuadernos colab, ni raros archivos. Simplemente necesitaras ejecutar un comando simple.')
 st.code(code, language='python')
-st.write('Eso es todo, podrás acceder a cualquier serie del Banco Central para que puedas trabajarla. Adicionalmente te presento una forma de realizar gráficos rapidamente.')
+st.write('📌 Eso es todo, podrás acceder a cualquier serie del Banco Central para que puedas trabajarla.')
+st.write('📌 Adicionalmente te presento una forma de realizar gráficos rapidamente.')
+st.write('Te muestro un ejemplo para cada tipo de dato, donde te dejo los códigos necesarios para su réplica')
 
 
 st.subheader('Serie diaria: Tipo de cambio')
