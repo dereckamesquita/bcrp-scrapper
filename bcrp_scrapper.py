@@ -252,7 +252,7 @@ def gra_bcrp_labels(df):
     chart = alt.Chart(df.reset_index()).mark_line().encode(
         x=ejex,
         y=ejey
-    )
+    ).interactive()
     
     # Agregar etiquetas personalizadas en color blanco
     labels = chart.mark_text(
