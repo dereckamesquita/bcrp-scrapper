@@ -53,7 +53,7 @@ st.title('✅ Caida de la inflación en el mes de junio')
 st.markdown('[Informe INEI (julio)](https://m.inei.gob.pe/media/MenuRecursivo/boletines/07-informe-tecnico-variacion-de-precios-jun-2023.pdf)')
 
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01273PM/html',
-                  '2020-03-01',
+                  '2021-08-01',
                   '2024-08-05').T
 df.loc[pd.to_datetime('2023-06-01')] = 6.46
 
@@ -66,7 +66,7 @@ chart = chart.properties(
         fontSize=20))
 df.index = df.index.strftime('%b %Y')
 st.altair_chart(chart, use_container_width=True)
-st.dataframe(df.tail(5).T)
+st.dataframe(df.tail(10).T)
 
 
 
