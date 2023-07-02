@@ -58,7 +58,11 @@ df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuale
 df.loc[pd.to_datetime('2023-06-01')] = 6.46
 
 st.code(codediario, language='python')
-st.altair_chart(gra_bcrp_labels(df), use_container_width=True)
+chart = gra_bcrp_labels(df)
+chart = chart.properties(
+    title='Gráfico de ejemplo'
+)
+st.altair_chart(chart, use_container_width=True)
 st.dataframe(df.tail(5))
 
 
