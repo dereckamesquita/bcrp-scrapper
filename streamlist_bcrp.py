@@ -61,7 +61,7 @@ st.code(codediario, language='python')
 chart = gra_bcrp_labels(df)
 chart = chart.properties(
     title=alt.TitleParams(
-        text=['Gráfico de ejemplo', 'Subtítulo'],
+        text= 'Inflación (Var % 12 meses)',
         align='center',
         fontSize=20  # Tamaño de fuente del título (puedes ajustarlo según tus necesidades)
     )
