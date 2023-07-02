@@ -22,7 +22,7 @@ chart = chart.properties(
     title=alt.TitleParams(
         text= 'Inflación (Var % 12 meses)',
         fontSize=20))
-st.altair_chart(chart, use_container_width=True)
+chart
 '''
 code = '''
 !wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
@@ -32,21 +32,18 @@ codediario = '''
 !wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
 from bcrp_scrapper import *
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/diarias/resultados/PD04637PD/html','2010-03-01','2023-08-05').T
-st.dataframe(df)
 gra_bcrp(df)
 '''
 codemensual = '''
 !wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
 from bcrp_scrapper import *
 df1 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html').T
-st.dataframe(df1)
 gra_bcrp(df1)
 '''
 codeanual= '''
 !wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
 from bcrp_scrapper import *
 df2 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales/resultados/PM06103MA/html','2000-03-01','2023-05-05').T
-st.dataframe(df2)
 gra_bcrp(df2)
 '''
 
