@@ -60,8 +60,11 @@ df.loc[pd.to_datetime('2023-06-01')] = 6.46
 st.code(codediario, language='python')
 chart = gra_bcrp_labels(df)
 chart = chart.properties(
-    title='Gráfico de ejemplo',
-    fontsize=20
+    title=alt.TitleParams(
+        text=['Gráfico de ejemplo', 'Subtítulo'],
+        align='center',
+        fontSize=20  # Tamaño de fuente del título (puedes ajustarlo según tus necesidades)
+    )
 )
 st.altair_chart(chart, use_container_width=True)
 st.dataframe(df.tail(5))
