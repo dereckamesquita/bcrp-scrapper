@@ -57,9 +57,6 @@ df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuale
                   '2024-08-05').T
 df.loc[pd.to_datetime('2023-06-01')] = 6.46
 
-
-# Agregar la nueva fila al DataFrame
-df = df.append(new_row, ignore_index=True)
 st.code(codediario, language='python')
 st.altair_chart(gra_bcrp_labels(df), use_container_width=True)
 st.dataframe(df.tail(5))
