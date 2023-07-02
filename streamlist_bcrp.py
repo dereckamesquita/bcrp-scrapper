@@ -52,7 +52,12 @@ st.title('✅ Caida de la inflación en el mes de junio')
 
 st.markdown('[Informe INEI (julio)](https://www.linkedin.com/in/dereck-amesquita/)')
 
-
+df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN09824PM/html',
+                  '2020-03-01',
+                  '2024-08-05').T
+st.code(codediario, language='python')
+st.altair_chart(gra_bcrp(df), use_container_width=True)
+st.dataframe(df.tail(5))
 
 
 
