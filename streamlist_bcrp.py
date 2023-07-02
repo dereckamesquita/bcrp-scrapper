@@ -62,6 +62,8 @@ st.write('📌 Adicionalmente te presento una forma de realizar gráficos rapida
 st.write('Te muestro un ejemplo para cada tipo de dato, donde te dejo los códigos necesarios para su réplica')
 
 st.title('✅ Caida de la inflación en el mes de junio')
+st.write('El 01 de Julio salio el informe de precios del INEI. La sorpresa es que comunicaron que la inflación es de 6.46%.')
+st.write('Una caida de la inflación no involucra que caigan los precios, pero si que, no crezcan tan rapido como lo estaban haciendo.')
 
 st.markdown('[Informe INEI (julio)](https://m.inei.gob.pe/media/MenuRecursivo/boletines/07-informe-tecnico-variacion-de-precios-jun-2023.pdf)')
 
@@ -83,6 +85,7 @@ st.dataframe(df.tail(8).T)
 
 
 
+st.title('✅ Otras pruebas de BCRP SCRAPPER')
 
 st.subheader('Serie diaria: Tipo de cambio')
 
