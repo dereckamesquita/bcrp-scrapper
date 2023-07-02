@@ -56,7 +56,7 @@ df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuale
                   '2020-03-01',
                   '2024-08-05').T
 st.code(codediario, language='python')
-st.altair_chart(gra_bcrp(df), use_container_width=True)
+st.altair_chart(gra_bcrp_labels(df), use_container_width=True)
 st.dataframe(df.tail(5))
 
 
