@@ -48,6 +48,15 @@ st.write('📌 Eso es todo, podrás acceder a cualquier serie del Banco Central 
 st.write('📌 Adicionalmente te presento una forma de realizar gráficos rapidamente.')
 st.write('Te muestro un ejemplo para cada tipo de dato, donde te dejo los códigos necesarios para su réplica')
 
+st.title('✅ Caida de la inflación en el mes de junio')
+
+st.markdown('[Informe INEI (julio)](https://www.linkedin.com/in/dereck-amesquita/)')
+
+
+
+
+
+
 
 st.subheader('Serie diaria: Tipo de cambio')
 
@@ -71,3 +80,5 @@ df2 = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/anuales
 st.code(codeanual, language='python')
 st.altair_chart(gra_bcrp(df2), use_container_width=True)
 st.dataframe(df2.tail(6))
+#https://docs.streamlit.io/library/api-reference/data/st.dataframe
+
