@@ -50,15 +50,13 @@ st.write('Te muestro un ejemplo para cada tipo de dato, donde te dejo los códig
 
 st.title('✅ Caida de la inflación en el mes de junio')
 
-st.markdown('[Informe INEI (julio)](https://www.linkedin.com/in/dereck-amesquita/)')
+st.markdown('[Informe INEI (julio)](https://m.inei.gob.pe/media/MenuRecursivo/boletines/07-informe-tecnico-variacion-de-precios-jun-2023.pdf)')
 
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01273PM/html',
                   '2020-03-01',
                   '2024-08-05').T
-new_row = {
-    'Periodo': pd.to_datetime('2023-01-03'),
-    df.columns[0]: 6.46
-}
+df.loc[pd.to_datetime('2023-06-01')] = 6.46
+
 
 # Agregar la nueva fila al DataFrame
 df = df.append(new_row, ignore_index=True)
