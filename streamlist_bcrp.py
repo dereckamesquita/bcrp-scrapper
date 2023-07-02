@@ -63,11 +63,10 @@ chart = chart.properties(
     title=alt.TitleParams(
         text= 'Inflación (Var % 12 meses)',
         align='center',
-        fontSize=20  # Tamaño de fuente del título (puedes ajustarlo según tus necesidades)
-    )
-)
+        fontSize=20))
+
 st.altair_chart(chart, use_container_width=True)
-st.dataframe(df.tail(5))
+st.dataframe(df.tail(5).T)
 
 
 
