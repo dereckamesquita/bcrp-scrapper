@@ -55,6 +55,13 @@ st.markdown('[Informe INEI (julio)](https://www.linkedin.com/in/dereck-amesquita
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01273PM/html',
                   '2020-03-01',
                   '2024-08-05').T
+new_row = {
+    'Periodo': pd.to_datetime('2023-01-03'),
+    df.columns[0]: 6.46
+}
+
+# Agregar la nueva fila al DataFrame
+df = df.append(new_row, ignore_index=True)
 st.code(codediario, language='python')
 st.altair_chart(gra_bcrp_labels(df), use_container_width=True)
 st.dataframe(df.tail(5))
