@@ -73,7 +73,7 @@ df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuale
                   '2024-08-05').T
 df.loc[pd.to_datetime('2023-06-01')] = 6.46
 
-st.code(codediario, language='python')
+st.code(codeipc, language='python')
 chart = gra_bcrp_labels(df)
 chart = chart.properties(
     title=alt.TitleParams(
