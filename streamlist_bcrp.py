@@ -11,6 +11,19 @@ from bcrp_scrapper import *
 import matplotlib.pyplot as plt
 from datetime import datetime
 import bs4
+
+codeipc = '''
+df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01273PM/html',
+                  '2021-08-01',
+                  '2024-08-05').T
+df.loc[pd.to_datetime('2023-06-01')] = 6.46 #Fuente INEI
+chart = gra_bcrp_labels(df)
+chart = chart.properties(
+    title=alt.TitleParams(
+        text= 'Inflación (Var % 12 meses)',
+        fontSize=20))
+st.altair_chart(chart, use_container_width=True)
+'''
 code = '''
 !wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
 from bcrp_scrapper import *
@@ -62,11 +75,10 @@ chart = gra_bcrp_labels(df)
 chart = chart.properties(
     title=alt.TitleParams(
         text= 'Inflación (Var % 12 meses)',
-        align='center',
         fontSize=20))
 df.index = df.index.strftime('%b %Y')
 st.altair_chart(chart, use_container_width=True)
-st.dataframe(df.tail(10).T)
+st.dataframe(df.tail(8).T)
 
 
 
