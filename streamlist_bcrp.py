@@ -13,6 +13,8 @@ from datetime import datetime
 import bs4
 
 codeipc = '''
+!wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
+from bcrp_scrapper import *
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01273PM/html',
                   '2021-08-01',
                   '2024-08-05').T
