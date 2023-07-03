@@ -62,7 +62,7 @@ st.write('Te muestro un ejemplo para cada tipo de dato, donde te dejo los códig
 
 st.title('✅ Caida de la inflación en el mes de junio')
 st.write('El 01 de Julio salio el informe de precios del INEI. La sorpresa es que comunicaron que la inflación es de 6.46%.')
-st.write('Una caida de la inflación no involucra que caigan los precios, pero si que, no crezcan tan rapido como lo estaban haciendo.')
+st.write('Una caída en la tasa de inflación no implica una disminución de los precios, pero indica que el ritmo de crecimiento de los precios se está desacelerando.')
 st.write('Te dejo el link del informe y tambien los codigos para recrear el gráfico y el dataframe mediante BCRP SCRAPPER.')
 
 st.markdown('[Informe INEI (julio)](https://m.inei.gob.pe/media/MenuRecursivo/boletines/07-informe-tecnico-variacion-de-precios-jun-2023.pdf)')
