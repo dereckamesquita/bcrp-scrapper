@@ -67,8 +67,8 @@ st.write('Te muestro un ejemplo para cada tipo de dato, donde te dejo los códig
 
 st.title('✅ Inversión privada continua en rojo, pero modera caida')
 
-df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01273PM/html',
-                  '2021-08-01',
+df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/trimestrales/resultados/PN02545AQ/html',
+                  '2020-08-01',
                   '2024-08-05').T
 df.loc[pd.to_datetime('2023-06-01')] = 6.46
 
