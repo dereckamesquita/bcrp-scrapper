@@ -147,7 +147,7 @@ def convertir_fechas(df, columna):
             mes = diccionario_meses.get(fecha[2:5], 1)
             anio = int(fecha[5:])
             anio = ajustar_anio(anio)
-        elif fecha[] == 'T':
+        elif fecha[0] == 'T':
             trimestre = int(fecha[0])
             anio = int(fecha[2:])
             anio = ajustar_anio(anio)
