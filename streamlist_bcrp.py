@@ -12,6 +12,11 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import bs4
 
+codeinversion = '''
+!wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
+from bcrp_scrapper import *
+'''
+
 codeipc = '''
 !wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
 from bcrp_scrapper import *
@@ -59,6 +64,23 @@ st.code(code, language='python')
 st.write('📌 Eso es todo, podrás acceder a cualquier serie del Banco Central para que puedas trabajarla.')
 st.write('📌 Adicionalmente te presento una forma de realizar gráficos rapidamente.')
 st.write('Te muestro un ejemplo para cada tipo de dato, donde te dejo los códigos necesarios para su réplica')
+
+st.title('✅ Inversión privada continua en rojo, pero modera caida')
+
+df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01273PM/html',
+                  '2021-08-01',
+                  '2024-08-05').T
+df.loc[pd.to_datetime('2023-06-01')] = 6.46
+
+st.code(codeipc, language='python')
+chart = gra_bcrp_labels(df)
+chart = chart.properties(
+    title=alt.TitleParams(
+        text= 'Inversión Bruta - Var (12%)',
+        fontSize=20))
+df.index = df.index.strftime('%b %Y')
+st.altair_chart(chart, use_container_width=True)
+st.dataframe(df.tail(8).T)
 
 st.title('✅ Caida de la inflación en el mes de junio')
 st.write('El 01 de Julio salio el informe de precios del INEI. La sorpresa es que comunicaron que la inflación es de 6.46%.')
