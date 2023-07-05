@@ -76,7 +76,8 @@ st.write('📌 Eso es todo, podrás acceder a cualquier serie del Banco Central 
 st.write('📌 Adicionalmente te presento una forma de realizar gráficos rapidamente.')
 st.write('Te muestro un ejemplo para cada tipo de dato, donde te dejo los códigos necesarios para su réplica')
 
-st.title('✅ Inversión privada continua en rojo, pero modera caida')
+st.title('📉 Inversión privada continua en rojo, pero modera caída')
+st.write ('La inversión privada continúa en declive, con una contracción del 12% en el primer trimestre, la mayor desde 2009, excluyendo la pandemia. Se prevé una moderación en el segundo trimestre, con una caída estimada del 7.1%. Se espera una recuperación en el futuro debido a mejores expectativas y proyectos de infraestructura.'
 
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/trimestrales/resultados/PN02533AQ/html',
                   '2021-08-01',
@@ -85,7 +86,7 @@ df['Var % (12 meses)'] = df.iloc[:, 0].pct_change(periods=4) * 100
 df.loc[pd.to_datetime('2023-06-30')] = -7.41
 df = df.iloc[:, 1:].dropna()
 
-st.code(codeipc, language='python')
+st.code(codeinversion, language='python')
 chart = gra_bcrp_labels(df)
 chart = chart.properties(
     title=alt.TitleParams(
