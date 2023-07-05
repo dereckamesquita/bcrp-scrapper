@@ -73,10 +73,9 @@ df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/trimestr
 
 df.loc[pd.to_datetime('2023-06-30')] = -6.46
 
-df['var%'] = df.iloc[:, 0].pct_change(periods=4) 
+df['var%'] = df.iloc[:, 0].pct_change(periods=4) * 100
 df = df.iloc[:, 1:]
 df = df.dropna()
-df = df.style.format("{:.2%}")
 
 st.code(codeipc, language='python')
 chart = gra_bcrp_labels(df)
