@@ -18,14 +18,11 @@ from bcrp_scrapper import *
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/trimestrales/resultados/PN02533AQ/html',
                   '2021-08-01',
                   '2024-08-05').T
-df['Var % (12 meses)'] = df.iloc[:, 0].pct_change(periods=4) * 100
+df['Var % (12 meses)'] = df.iloc[:, 0].pct_change(periods=4) * 100 #Calcular variaciones
 df.loc[pd.to_datetime('2023-06-30')] = -7.41 #Estimado segun MEF
 df = df.iloc[:, 1:].dropna()
 chart = gra_bcrp_labels(df)
-chart = chart.properties(
-    title=alt.TitleParams(
-        text= 'Inversión Bruta - Var (12%)',
-        fontSize=20))
+chart 
 '''
 
 codeipc = '''
@@ -77,9 +74,8 @@ st.write('📌 Adicionalmente te presento una forma de realizar gráficos rapida
 st.write('Te muestro un ejemplo para cada tipo de dato, donde te dejo los códigos necesarios para su réplica')
 
 st.title('📉 Inversión privada continua en rojo, pero modera caída')
-st.write ('La inversión privada continúa en declive, con una contracción del 12% en el primer trimestre, la mayor desde 2009, excluyendo la pandemia. Se prevé una moderación en el segundo trimestre, con una caída estimada del 7.1%. Se espera una recuperación en el futuro debido a mejores expectativas y proyectos de infraestructura.')
-st.write('La inversión privada continúa en declive, con una contracción del 12% en el primer trimestre, la mayor desde 2009, excluyendo la pandemia. \
-Se prevé una moderación en el segundo trimestre, con una caída estimada del 7.1%. \
+st.write('La inversión privada continúa en terreno negativo, con una contracción del 12% en el primer trimestre, la mayor desde 2009, excluyendo la pandemia. \
+Se prevé una moderación en el segundo trimestre, con una caída estimada del 7.1% (estimada por el MEF). \
 Se espera una recuperación en el futuro debido a mejores expectativas y proyectos de infraestructura.')
 
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/trimestrales/resultados/PN02533AQ/html',
