@@ -70,13 +70,9 @@ st.title('✅ Inversión privada continua en rojo, pero modera caida')
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/trimestrales/resultados/PN02533AQ/html',
                   '2021-08-01',
                   '2024-08-05').T
-
-
-df['var%'] = df.iloc[:, 0].pct_change(periods=4) * 100
+df['Var % (12 meses)'] = df.iloc[:, 0].pct_change(periods=4) * 100
 df.loc[pd.to_datetime('2023-06-30')] = -7.41
-
-df = df.iloc[:, 1:]
-df = df.dropna()
+df = df.iloc[:, 1:].dropna()
 
 st.code(codeipc, language='python')
 chart = gra_bcrp_labels(df)
@@ -99,14 +95,14 @@ df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuale
                   '2021-08-01',
                   '2024-08-05').T
 df.loc[pd.to_datetime('2023-06-01')] = 6.46
+df.index = df.index.strftime('%b %Y')
 
-st.code(codeipc, language='python')
+st.code(codeinversion, language='python')
 chart = gra_bcrp_labels(df)
 chart = chart.properties(
     title=alt.TitleParams(
         text= 'Inflación (Var % 12 meses)',
         fontSize=20))
-df.index = df.index.strftime('%b %Y')
 st.altair_chart(chart, use_container_width=True)
 st.dataframe(df.tail(8).T)
 
