@@ -77,7 +77,7 @@ st.write('📌 Adicionalmente te presento una forma de realizar gráficos rapida
 st.write('Te muestro un ejemplo para cada tipo de dato, donde te dejo los códigos necesarios para su réplica')
 
 st.title('📉 Inversión privada continua en rojo, pero modera caída')
-st.write ('La inversión privada continúa en declive, con una contracción del 12% en el primer trimestre, la mayor desde 2009, excluyendo la pandemia. Se prevé una moderación en el segundo trimestre, con una caída estimada del 7.1%. Se espera una recuperación en el futuro debido a mejores expectativas y proyectos de infraestructura.'
+st.write ('La inversión privada continúa en declive, con una contracción del 12% en el primer trimestre, la mayor desde 2009, excluyendo la pandemia. Se prevé una moderación en el segundo trimestre, con una caída estimada del 7.1%. Se espera una recuperación en el futuro debido a mejores expectativas y proyectos de infraestructura.')
 
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/trimestrales/resultados/PN02533AQ/html',
                   '2021-08-01',
