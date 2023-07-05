@@ -15,6 +15,17 @@ import bs4
 codeinversion = '''
 !wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
 from bcrp_scrapper import *
+df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/trimestrales/resultados/PN02533AQ/html',
+                  '2021-08-01',
+                  '2024-08-05').T
+df['Var % (12 meses)'] = df.iloc[:, 0].pct_change(periods=4) * 100
+df.loc[pd.to_datetime('2023-06-30')] = -7.41 #Estimado segun MEF
+df = df.iloc[:, 1:].dropna()
+chart = gra_bcrp_labels(df)
+chart = chart.properties(
+    title=alt.TitleParams(
+        text= 'Inversión Bruta - Var (12%)',
+        fontSize=20))
 '''
 
 codeipc = '''
@@ -83,7 +94,7 @@ chart = chart.properties(
 df.index = df.index.strftime('%b %Y')
 st.altair_chart(chart, use_container_width=True)
 st.dataframe(df.tail(8).T)
-
+##################
 st.title('✅ Caida de la inflación en el mes de junio')
 st.write('El 01 de Julio salio el informe de precios del INEI. La sorpresa es que comunicaron que la inflación es de 6.46%.')
 st.write('Una caída en la tasa de inflación no implica una disminución de los precios, pero indica que el ritmo de crecimiento de los precios se está desacelerando.')
