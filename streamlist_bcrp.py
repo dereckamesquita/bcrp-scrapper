@@ -71,9 +71,10 @@ df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/trimestr
                   '2018-08-01',
                   '2024-08-05').T
 
-df.loc[pd.to_datetime('2023-06-30')] = -6.46
 
 df['var%'] = df.iloc[:, 0].pct_change(periods=4) * 100
+df.loc[pd.to_datetime('2023-06-30')] = -7.41
+
 df = df.iloc[:, 1:]
 df = df.dropna()
 
