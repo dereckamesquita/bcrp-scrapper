@@ -68,12 +68,12 @@ st.write('Te muestro un ejemplo para cada tipo de dato, donde te dejo los códig
 st.title('✅ Inversión privada continua en rojo, pero modera caida')
 
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/trimestrales/resultados/PN02533AQ/html',
-                  '2018-08-01',
+                  '2021-08-01',
                   '2024-08-05').T
 
 
 df['var%'] = df.iloc[:, 0].pct_change(periods=4) * 100
-df.loc[pd.to_datetime('2023-06-30')] = float (-7.41)
+df.loc[pd.to_datetime('2023-06-30')] = -7.41
 
 df = df.iloc[:, 1:]
 df = df.dropna()
