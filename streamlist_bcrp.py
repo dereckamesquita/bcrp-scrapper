@@ -80,9 +80,7 @@ mis_variables = ['https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales
         'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01130XM/html',
         'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01138XM/html',
         'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PD31895MM/html']
-df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01273PM/html',
-                  '2022-08-01',
-                  '2024-08-05')
+df = bcrpscrapper(mis_variables,  '2022-08-01', '2024-08-05')
 st.dataframe(df)
 
 st.title('📉 Inversión privada continua en rojo, pero modera caída')
