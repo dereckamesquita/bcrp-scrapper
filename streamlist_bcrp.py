@@ -12,6 +12,15 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import bs4
 
+codelistas = '''
+mis_variables = ['https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html',
+        'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01207PM/html',
+        'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01129XM/html',
+        'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01130XM/html',
+        'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01138XM/html',
+        'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PD31895MM/html']
+df = bcrpscrapper(mis_variables,  '2022-08-01', '2024-08-05')
+'''
 codeinversion = '''
 !wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
 from bcrp_scrapper import *
@@ -81,7 +90,14 @@ mis_variables = ['https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales
         'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01138XM/html',
         'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PD31895MM/html']
 df = bcrpscrapper(mis_variables,  '2022-08-01', '2024-08-05')
+st.write('Antes de lanzar la beta de un pronosticador con ML. Quiero presentar la razón por la cual creé este scrapper.\
+Cuando solo tenemos que acceder a una serie, podriamos pensar, ni tan necesario fue tener que usar python. \
+Pero cuando necesitamos entrar a 20, 30 , 40 o 50 series, y encima cuando se repite cada cierto tiempo, ahi si se ve mejor. \
+Por ello, la función "bcrpscrapper", tambien puede recibir una lista con varias series, y lo mejor de todo, te devuelve un dataframe\
+con las fechas en orden.')
+
 st.dataframe(df)
+st.code(codelistas, language='python')
 
 st.title('📉 Inversión privada continua en rojo, pero modera caída')
 st.write('La inversión privada continúa en terreno negativo, con una contracción del 12% en el primer trimestre, la mayor desde 2009, excluyendo la pandemia. \
