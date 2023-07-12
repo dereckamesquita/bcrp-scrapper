@@ -94,7 +94,7 @@ mis_variables = [
 df = bcrpscrapper(mis_variables,  '2022-08-01', '2024-08-05')
 st.write('Antes de lanzar la beta de un pronosticador con ML. Quiero presentar la razón por la cual creé este scrapper. \
 Cuando solo tenemos que acceder a una serie, podriamos pensar, ni tan necesario fue tener que usar python. \
-Pero cuando necesitamos entrar a 20, 30 , 40 o 50 series, y encima cuando se repite cada cierto tiempo, ahi si se ve mejor.)
+Pero cuando necesitamos entrar a 20, 30 , 40 o 50 series, y encima cuando se repite cada cierto tiempo, ahi si se ve mejor.')
 st.write('Por ello, la función "bcrpscrapper", tambien puede recibir una lista con varias series, y lo mejor de todo, te devuelve un dataframe\
 con las fechas en orden.')
 st.dataframe(df)
