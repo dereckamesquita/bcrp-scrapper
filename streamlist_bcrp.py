@@ -73,6 +73,18 @@ st.write('📌 Eso es todo, podrás acceder a cualquier serie del Banco Central 
 st.write('📌 Adicionalmente te presento una forma de realizar gráficos rapidamente.')
 st.write('Te muestro un ejemplo para cada tipo de dato, donde te dejo los códigos necesarios para su réplica')
 
+st.title('🦖 Descarga masiva de datos: El verdadero fin de BCRP-SCRAPPER')
+mis_variables = ['https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html',
+        'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01207PM/html',
+        'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01129XM/html',
+        'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01130XM/html',
+        'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01138XM/html',
+        'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PD31895MM/html']
+df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01273PM/html',
+                  '2022-08-01',
+                  '2024-08-05')
+st.dataframe(df)
+
 st.title('📉 Inversión privada continua en rojo, pero modera caída')
 st.write('La inversión privada continúa en terreno negativo, con una contracción del 12% en el primer trimestre, la mayor desde 2009, excluyendo la pandemia. \
 Se prevé una moderación en el segundo trimestre, con una caída estimada del 7.1% (estimada por el MEF). \
