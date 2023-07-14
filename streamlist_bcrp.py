@@ -83,14 +83,16 @@ st.write('📌 Eso es todo, podrás acceder a cualquier serie del Banco Central 
 st.write('📌 Adicionalmente te presento una forma de realizar gráficos rapidamente.')
 st.write('Te muestro un ejemplo para cada tipo de dato, donde te dejo los códigos necesarios para su réplica')
 ########### NOTICIA
-st.title('🦖 Replicad de noticia: Cotización del dolar cae (Diario Gestión 13 de julio)')
+st.title('🦖 Replica de noticia: Cotización del dolar cae (Diario Gestión 13 de julio)')
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01210PM/html',  '2022-08-01', '2024-08-05').T
 df.loc[pd.to_datetime('2023-07-30')] = 3.582 #Estimado segun promedio hasta el 12 de julio.
 chart = gra_bcrp_labels(df)
 chart = chart.properties(
     title=alt.TitleParams(
         text= 'Evolución del tipo de cambio (S por $',
-       fontSize=20))
+       fontSize=20)).configure_scale(
+    y=alt.Scale(domain=(3, 4))
+)
 df.index = df.index.strftime('%b %Y')
 st.altair_chart(chart, use_container_width=True)
 st.dataframe(df.tail(8).T)
