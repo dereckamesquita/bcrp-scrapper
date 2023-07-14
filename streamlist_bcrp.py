@@ -87,7 +87,6 @@ st.title('🦖 Replicad de noticia: Cotización del dolar cae (Diario Gestión 1
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01210PM/html',  '2022-08-01', '2024-08-05')
 df.loc[pd.to_datetime('2023-07-30')] = 3.582 #Estimado segun promedio hasta el 12 de julio.
 
-df.index = df.index.strftime('%b %Y')
 st.altair_chart(chart, use_container_width=True)
 st.dataframe(df.tail(8).T)
 
