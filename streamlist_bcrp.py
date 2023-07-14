@@ -92,7 +92,7 @@ chart = chart.properties(
         text= 'Evolución del tipo de cambio (S por $',
        fontSize=20)).configure_scale(
     y=alt.Scale(domain=(3, 4))
-)
+
 df.index = df.index.strftime('%b %Y')
 st.altair_chart(chart, use_container_width=True)
 st.dataframe(df.tail(8).T)
