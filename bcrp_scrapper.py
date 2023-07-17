@@ -272,4 +272,37 @@ def gra_bcrp_labels(df):
     
     return chart_with_labels.interactive()
 
+def gra_bcrp_bar(df):
+    ejex = df.index.name
+    ejey = df.columns[0]
+    
+    # Convertir el índice al formato de fecha adecuado
+    df.index = pd.to_datetime(df.index)
+    
+    # Agrupar los datos por mes y obtener la suma de los valores para cada mes
+    df_monthly = df.resample('MS').sum()
+    
+    chart = alt.Chart(df_monthly.reset_index()).mark_bar().encode(
+        x=alt.X(ejex, timeUnit='yearmonth', axis=alt.Axis(format='%Y-%m', title='Fecha')),
+        y=ejey
+    )
+    
+    # Agregar etiquetas personalizadas en color blanco
+    labels = chart.mark_text(
+        align='left',
+        baseline='middle',
+        dx=3,
+        color='black'  # Cambiar el color de las etiquetas a blanco
+    ).encode(
+        x=alt.X(ejex, timeUnit='yearmonth', axis=alt.Axis(format='%Y-%m', title='Fecha')),
+        y=ejey,
+        text=alt.Text(ejey, format='.2f'),  # Etiquetas con formato de dos decimales
+        color=alt.value('white')  # Especificar el color blanco de las etiquetas
+    )
+    
+    # Combinar gráfico y etiquetas
+    chart_with_labels = chart + labels
+    
+    return chart_with_labels.interactive()
+
 
