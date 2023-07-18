@@ -272,6 +272,9 @@ def gra_bcrp_labels(df):
     
     return chart_with_labels.interactive()
 
+import altair as alt
+import pandas as pd
+
 def gra_bcrp_bar(df):
     ejex = df.index.name
     ejey = df.columns[0]
@@ -287,22 +290,21 @@ def gra_bcrp_bar(df):
         y=ejey
     )
     
-    # Agregar etiquetas personalizadas en color blanco
+    # Agregar etiquetas personalizadas
     labels = chart.mark_text(
-        align='left',
+        align='right',  # Establecer align='right' para colocar las etiquetas al final de las barras
         baseline='middle',
-        dx=100,
-        color='black'  # Cambiar el color de las etiquetas a blanco
+        dx=-5,  # Ajustar el valor de dx según sea necesario
+        color='black'
     ).encode(
         x=alt.X(ejex, timeUnit='yearmonth', axis=alt.Axis(format='%Y-%m', title='Fecha')),
         y=ejey,
-        text=alt.Text(ejey, format='.2f'),  # Etiquetas con formato de dos decimales
-        color=alt.value('white')  # Especificar el color blanco de las etiquetas
+        text=alt.Text(ejey, format='.2f'),
+        color=alt.value('white')
     )
     
     # Combinar gráfico y etiquetas
     chart_with_labels = chart + labels
     
     return chart_with_labels.interactive()
-
 
