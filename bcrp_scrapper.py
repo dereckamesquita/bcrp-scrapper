@@ -291,7 +291,7 @@ def gra_bcrp_bar(df):
     labels = chart.mark_text(
         align='left',
         baseline='middle',
-        dx=3,
+        dx=100,
         color='black'  # Cambiar el color de las etiquetas a blanco
     ).encode(
         x=alt.X(ejex, timeUnit='yearmonth', axis=alt.Axis(format='%Y-%m', title='Fecha')),
