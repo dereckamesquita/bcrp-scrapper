@@ -84,7 +84,26 @@ st.write('📌 Adicionalmente te presento una forma de realizar gráficos rapida
 st.write('Te muestro un ejemplo para cada tipo de dato, donde te dejo los códigos necesarios para su réplica')
 ########### NOTICIA
 
+st.title('📉 Inversión privada continua en rojo, pero modera caída')
+st.write('📉 En mayo, el Producto Bruto Interno (PBI) de Perú sufrió una caída del 1.43%, impactado por la disminución en pesca 🎣, industria 🏭 y sector agropecuario 🌾. \
+El sector pesca tuvo la mayor contracción, con un preocupante -70.60%. \
+A pesar de estos resultados, se espera una recuperación económica 📈 para finales del 2023.\
+Sin embargo, alcanzar un crecimiento del 2.5% anual será un desafío, afectando los índices de pobreza 📉 y generación de empleo 👥. \
+Algunos sectores como minería ⛏️, comercio 🛒 y servicios 💼 lograron crecer en mayo, ofreciendo un rayo de esperanza en medio de las dificultades.')
 
+df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01728AM/html',  '2022-08-01', '2024-07-05').T
+df.loc[pd.to_datetime('2023-05-30')] = -1.43 #Fuente INEI
+df = df.iloc[:, 1:].dropna()
+
+st.code(codeinversion, language='python')
+chart = gra_bcrp_bar(df)
+chart = chart.properties(
+    title=alt.TitleParams(
+        text= 'Variación del PBI (Year over Year)',
+        fontSize=20))
+df.index = df.index.strftime('%b %Y')
+st.altair_chart(chart, use_container_width=True)
+st.dataframe(df.tail(8).T)
 
 
 ########
