@@ -12,6 +12,15 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import bs4
 
+
+codepbi = '''
+df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01728AM/html',  
+'2022-08-01', '2024-07-05').T
+df.loc[pd.to_datetime('2023-05-30')] = -1.43 #Fuente INEI
+df.tail(8).T
+chart = gra_bcrp_bar(df)
+
+'''
 codelistas = '''
 mis_variables = [
 'https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN38705PM/html',
@@ -93,15 +102,15 @@ Algunos sectores como minería ⛏️, comercio 🛒 y servicios 💼 lograron c
 
 df = bcrpscrapper('https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN01728AM/html',  '2022-08-01', '2024-07-05').T
 df.loc[pd.to_datetime('2023-05-30')] = -1.43 #Fuente INEI
+df.index = df.index.strftime('%b %Y')
 st.dataframe(df.tail(8).T)
 
 st.code(codeinversion, language='python')
 chart = gra_bcrp_bar(df)
-#chart = chart.properties(
- #   title=alt.TitleParams(
-  #      text= 'Variación del PBI (Year over Year)',
-   #     fontSize=20))
-df.index = df.index.strftime('%b %Y')
+chart = chart.properties(
+    title=alt.TitleParams(
+        text= 'Variación del PBI (Year over Year)',
+        fontSize=20))
 st.altair_chart(chart, use_container_width=True)
 st.dataframe(df.tail(8).T)
 
