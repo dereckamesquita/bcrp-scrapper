@@ -28,7 +28,7 @@ st.write('⭐️ No tienes que descargar nada, ni cuadernos colab, ni raros arch
 st.code(code, language='python')
 st.write('📌 Eso es todo, podrás acceder a cualquier serie del Banco Central para que puedas trabajarla.')
 st.title('📌 Nueva función bcrp_find')
-st.write('Te muestro como usarla')
+st.write('Te muestro como usarla. No solo obtendras el código unico, tambien las fechas sobre la ultima actualización de la serie.')
 st.code(codefind, language='python')
 st.dataframe(bcrp_find('Reservas internacionales', fre = 'D'))
 
