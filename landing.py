@@ -19,6 +19,9 @@ from bcrp_scrapper import *
 codefind = '''
 bcrp_find('Reservas internacionales', fre = 'D')
 '''
+codere = '''
+df = bcrpscrapper('PD04650MD').T
+'''
 st.title('✅ Presentación de bcrpscrapper 2.0: Descarga fácil de datos del BCRP')
 st.write('Hola, soy Dereck Amesquita')
 st.markdown('[LinkedIn](https://www.linkedin.com/in/dereck-amesquita/)')
@@ -31,4 +34,11 @@ st.title('📌 Nueva función bcrp_find')
 st.write('Te muestro como usarla. No solo obtendras el código unico, tambien las fechas sobre la ultima actualización de la serie.')
 st.code(codefind, language='python')
 st.dataframe(bcrp_find('Reservas internacionales', fre = 'D'))
+st.subtitle('📌 Ahora basta con el código de la serie')
+st.write('Suponiendo que quieres ver las Reservas Internacionales Netas, tomaras el codigo "PD04650MD".')
+df = bcrpscrapper('PD04650MD').T
+st.dataframe(df.head(10))
+
+
+
 
