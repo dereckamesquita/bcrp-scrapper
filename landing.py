@@ -46,9 +46,9 @@ st.code(codefind, language='python')
 st.dataframe(bcrp_find('Reservas internacionales', fre = 'D'))
 ######
 st.title('📌 Ahora basta con el código de la serie')
-st.write('A partir de ahora, acceder a tus datos económicos favoritos es más fácil que nunca. Simplemente necesitas el código único de la serie para obtener toda la información que deseas.')
+#st.write('A partir de ahora, acceder a tus datos económicos favoritos es más fácil que nunca. Simplemente necesitas el código único de la serie para obtener toda la información que deseas.')
 st.write('Por ejemplo, supongamos que quieres ver los datos de las Reservas Internacionales Netas. En este caso, simplemente tomarás el código de la serie, que es "PD04650MD", y lo ingresarás en la función `bcrpscrapper`.')
-st.write('¡Así de sencillo! Con el código de la serie, podrás acceder a los datos que necesitas para tus análisis y decisiones informadas en el ámbito económico. Descubre tendencias, patrones y estadísticas importantes de manera rápida y eficiente con BCRP Scrapper.')
+#st.write('¡Así de sencillo! Con el código de la serie, podrás acceder a los datos que necesitas para tus análisis y decisiones informadas en el ámbito económico. Descubre tendencias, patrones y estadísticas importantes de manera rápida y eficiente con BCRP Scrapper.')
 st.code(codere, language='python')
 
 df = bcrpscrapper('PD04650MD').T
