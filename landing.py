@@ -1,3 +1,19 @@
+from collections import namedtuple
+import altair as alt
+import math
+import pandas as pd
+import streamlit as st
+import requests
+response = requests.get("https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py")
+with open("bcrp_scrapper.py", "w") as file:
+    file.write(response.text)
+from bcrp_scrapper import *
+import matplotlib.pyplot as plt
+from datetime import datetime
+import bs4
+
+
+
 st.title('✅ Presentación de bcrpscrapper 2.0: Descarga fácil de datos del BCRP')
 st.write('Hola, soy Dereck Amesquita')
 st.markdown('[LinkedIn](https://www.linkedin.com/in/dereck-amesquita/)')
