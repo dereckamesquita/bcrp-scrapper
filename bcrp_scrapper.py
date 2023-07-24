@@ -9,6 +9,8 @@ Original file is located at
 # BCRP Scrapper
 """
 
+#!wget https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_scrapper.py
+#from bcrp_scrapper import *
 
 import requests
 import pandas as pd
@@ -71,7 +73,7 @@ def bcrpscrapper(datos, fecha_inicio='1900-01-01', fecha_final='2100-01-01'):
     for x in datos:
       data = scraperbcrp(x,fecha_inicio,fecha_final)
       df_vacio = pd.concat([df_vacio, data])
-    df_vacio=df_vacio.apply(pd.to_numeric, errors='coerce')
+    df_vacio=df_vacio.apply(pd.to_numeric, errors='coerce') #Convertir a numero
 
     return df_vacio
 
@@ -96,7 +98,7 @@ def scraperbcrp(direct, fecha_inicio1, fecha_final2):
     """
     ####### MOTOR DE CREACIÓN (inicio) ######
     # URL de la página web a scrapear
-    df1 = motorscraper(direct)
+    df1 = motorscraper(direct,fecha_inicio1,fecha_final2)
         ####### MOTOR DE CREACIÓN (Final) ######
 
     df2 = convertir_fechas(df1, 'Periodo')
@@ -169,10 +171,16 @@ def convertir_fechas(df, columna):
     df[columna] = df[columna].apply(convertir_fecha)
     return df
 
-def motorscraper(url):
-  codigo = url.split('/')[7]
-  uno = url.split('/')[9]
-  dos = url.split('/')[10]
+def motorscraper(url,fecha_inicio1,fecha_inicio2):
+  if 'https' in url:
+    codigo = url.split('/')[7]
+    uno = url.split('/')[9]
+    dos = url.split('/')[10]
+  else:
+    codigo = url
+    uno = fecha_inicio1
+    dos = fecha_inicio2
+
   url_archivo = 'https://estadisticas.bcrp.gob.pe/estadisticas/series/api/'+codigo+'/xml/'+uno+'/'+dos+'/'
   # Realizar la solicitud GET a la URL y obtener el contenido XML
   response = requests.get(url_archivo)
@@ -233,6 +241,7 @@ def motorscrapeobasico(direct):
     # Convertir la lista de datos en un DataFrame de Pandas
     df = pd.DataFrame(datos, columns=["Periodo", nombre])
     return df
+
 def gra_bcrp(df):
   ejex= df.index.name
   ejey= df.columns[0]
@@ -248,12 +257,12 @@ def gra_bcrp(df):
 def gra_bcrp_labels(df):
     ejex = df.index.name
     ejey = df.columns[0]
-    
+
     chart = alt.Chart(df.reset_index()).mark_line().encode(
         x=ejex,
         y=ejey
     )
-    
+
     # Agregar etiquetas personalizadas en color blanco
     labels = chart.mark_text(
         align='left',
@@ -266,28 +275,28 @@ def gra_bcrp_labels(df):
         text=alt.Text(ejey, format='.2f'),  # Etiquetas con formato de dos decimales
         color=alt.value('white')  # Especificar el color blanco de las etiquetas
     )
-    
+
     # Combinar gráfico y etiquetas
     chart_with_labels = chart + labels
-    
+
     return chart_with_labels.interactive()
 
 
 def gra_bcrp_bar(df):
     ejex = df.index.name
     ejey = df.columns[0]
-    
+
     # Convertir el índice al formato de fecha adecuado
     df.index = pd.to_datetime(df.index)
-    
+
     # Agrupar los datos por mes y obtener la suma de los valores para cada mes
     df_monthly = df.resample('MS').sum()
-    
+
     chart = alt.Chart(df_monthly.reset_index()).mark_bar().encode(
         x=alt.X(ejex, timeUnit='yearmonth', axis=alt.Axis(format='%Y-%m', title='Fecha')),
         y=ejey
     )
-    
+
     # Agregar etiquetas personalizadas
     labels = chart.mark_text(
         align='center',
@@ -300,8 +309,19 @@ def gra_bcrp_bar(df):
         text=alt.Text(ejey, format='.2f'),
         color=alt.value('white')
     )
-    
+
     # Combinar gráfico y etiquetas
     chart_with_labels = chart + labels
-    
+
     return chart_with_labels.interactive()
+
+bcrp_data = pd.read_csv('https://raw.githubusercontent.com/dereckamesquita/bcrp-scrapper/main/bcrp_data.csv', index_col = False)
+bcrp_data.drop(columns=['Unnamed: 0'], inplace=True)
+def bcrp_find(palabra_clave, fre=None):
+    # Utilizar el DataFrame global dentro del ámbito local de la función
+    resultado = bcrp_data.query('Categoría.str.contains(@palabra_clave, case=False, na=False) | Serie.str.contains(@palabra_clave, case=False, na=False)')
+    if fre:
+        resultado = resultado[resultado['Frecuencia'] == fre]
+    resultado['Categoría'] = resultado['Categoría'].str.strip().str.replace('\n', '')
+
+    return resultado
