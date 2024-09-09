@@ -45,43 +45,43 @@ def reemplazar_mes(x):
 
     return diccionario_meses.get(x)
 
+
 def bcrpscrapper(datos, fecha_inicio='1900-01-01', fecha_final='2100-01-01'):
     """
-    Scrapea datos del BCRP de forma libre. Esta función usa otra función principal, la cual se encarga de procesar cada serie.
+    Scrapea datos del BCRP de forma libre. Esta función usa otra función principal, la cual se encarga de procesar cada+
+    serie.
 
     Parameters:
-        datos (str o list): Puede ser una lista "[]" o un string. Usa la o las URLS que te proporciona el BCRP.
-        fecha_inicio (str): Fecha de inicio en formato 'YYYY-MM-DD' o 'YYYY-MM' o 'YYYY'.
-        fecha_final (str): Fecha final en formato 'YYYY-MM-DD' o 'YYYY-MM' o 'YYYY'.
+        datos (str o list): Puede ser una lista "[]" o un string. Usa la o las URLS que te proporciona el BCRP
 
     Return:
-        DataFrame con los datos extraídos.
-    """
-    if isinstance(datos, str):  # Comprobando si es una lista o no
-        datos = [datos]
-    
-    for x in range(len(datos)):
-        if 'diarias' in datos[x]:
-            datos[x] = f"{datos[x]}/{fecha_inicio}/{fecha_final}/"
-        elif 'mensuales' in datos[x]:
-            fecha_inicio_mes = fecha_inicio[:7] if len(fecha_inicio) >= 7 else fecha_inicio[:4] + '-01'
-            fecha_final_mes = fecha_final[:7] if len(fecha_final) >= 7 else fecha_final[:4] + '-12'
-            datos[x] = f"{datos[x]}/{fecha_inicio_mes.replace('-', '/')}/{fecha_final_mes.replace('-', '/')}/"
-        elif 'trimestrales' in datos[x]:
-            fecha_inicio_trim = fecha_inicio[:7] if len(fecha_inicio) >= 7 else fecha_inicio[:4] + '-01'
-            fecha_final_trim = fecha_final[:7] if len(fecha_final) >= 7 else fecha_final[:4] + '-12'
-            datos[x] = f"{datos[x]}/{fecha_inicio_trim.replace('-', '/')}/{fecha_final_trim.replace('-', '/')}/"
-        elif 'anuales' in datos[x]:
-            datos[x] = f"{datos[x]}/{fecha_inicio[:4]}/{fecha_final[:4]}/"
+        DataFrame con los
 
+    Ejemplos:
+    """
+    if isinstance(datos, str): #Comprobando si es una lista o no
+      datos = [datos]
+    for x in range(len(datos)):
+      if 'diarias' in datos[x]:
+        datos[x]=str(datos[x]+'/1900-01-02/2099-06-22/')
+      elif 'mensuales' in datos[x]:
+        datos[x]=str(datos[x]+'/1900-1/2099-5/')
+      elif 'trimestrales' in datos[x]:
+        datos[x]=str(datos[x]+'/1900-1/2099-5/')
+      elif 'anuales' in datos[x]:
+        datos[x]=str(datos[x]+'/1900/2099/')
     df_vacio = pd.DataFrame()
-    for url in datos:
-        data = scraperbcrp(url, fecha_inicio, fecha_final)
-        df_vacio = pd.concat([df_vacio, data])
-    
-    df_vacio = df_vacio.apply(pd.to_numeric, errors='coerce')  # Convertir a número
+    for x in datos:
+      data = scraperbcrp(x,fecha_inicio,fecha_final)
+      df_vacio = pd.concat([df_vacio, data])
+    df_vacio=df_vacio.apply(pd.to_numeric, errors='coerce') #Convertir a numero
 
     return df_vacio
+
+
+
+
+
 import urllib.request
 from bs4 import BeautifulSoup
 import pandas as pd
